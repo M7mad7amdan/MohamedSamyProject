@@ -1,4 +1,4 @@
-export function paginate(items, page = 1, pageSize = 20) {
+export function paginate(items, page = 1, pageSize = 90) {
   const total = items.length;
   const pageCount = Math.ceil(total / pageSize);
   const safePage = Math.min(Math.max(1, Number(page) || 1), Math.max(1, pageCount));
@@ -9,6 +9,7 @@ export function paginate(items, page = 1, pageSize = 20) {
     pagination: { page: safePage, pageSize, pageCount, total },
   };
 }
+
 
 export function normalizeText(value) {
   return String(value ?? "")
