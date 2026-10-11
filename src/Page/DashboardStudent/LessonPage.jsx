@@ -109,7 +109,7 @@ export default function LessonPage() {
     };
   }, [courseId, lessonId]);
 
-  const currentLessonInfo = useMemo(() => {
+  const currentLessonInfo = (() => {
     for (const unit of units) {
       const lesson = unit.lessons.find(
         (lesson) => String(lesson.id) === String(lessonId),
@@ -124,7 +124,7 @@ export default function LessonPage() {
     }
 
     return null;
-  }, [units, lessonId]);
+  })();
 
   const currentLesson = currentLessonInfo?.lesson ?? null;
 

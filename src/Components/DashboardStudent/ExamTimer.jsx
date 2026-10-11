@@ -5,9 +5,7 @@ export default function ExamTimer({ durationMinutes, onTimeUp }) {
     Math.max(0, Math.floor(Number(durationMinutes) * 60)),
   );
 
-  const endTimeRef = useRef(
-    Date.now() + Math.max(0, Number(durationMinutes) * 60 * 1000),
-  );
+  const endTimeRef = useRef(null);
 
   const timeUpCalledRef = useRef(false);
 
@@ -18,7 +16,6 @@ export default function ExamTimer({ durationMinutes, onTimeUp }) {
 
     timeUpCalledRef.current = false;
 
-    setRemainingSeconds(duration);
 
     const updateTimer = () => {
       const secondsLeft = Math.max(
@@ -80,7 +77,9 @@ export default function ExamTimer({ durationMinutes, onTimeUp }) {
   `}
       aria-label={`الوقت المتبقي ${formattedTime}`}
     >
-      <span className="text-xs font-bold text-white/60 mb-1">الوقت المتبقي</span>
+      <span className="text-xs font-bold text-white/60 mb-1">
+        الوقت المتبقي
+      </span>
 
       <span className="text-[23px] font-black tabular-nums tracking-wider">
         {formattedTime}

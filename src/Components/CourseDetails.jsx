@@ -43,6 +43,18 @@ function formatPrice(price) {
   return `${new Intl.NumberFormat("ar-EG").format(price)} جنيه`;
 }
 
+function InfoItem({ icon, title, value }) {
+  return (
+    <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-4">
+      <FontAwesomeIcon icon={icon} className="mb-3 text-gold" />
+
+      <p className="mb-1 text-xs text-white/40">{title}</p>
+
+      <p className="truncate text-sm font-bold text-white">{value}</p>
+    </div>
+  );
+}
+
 export default function CourseDetails() {
   const { courseId } = useParams();
 
@@ -117,18 +129,6 @@ export default function CourseDetails() {
   const hasLessonAccess = lessonAccess.length > 0;
 
   const canViewCourseContent = isEnrolled || hasLessonAccess;
-
-  function InfoItem({ icon, title, value }) {
-    return (
-      <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-4">
-        <FontAwesomeIcon icon={icon} className="mb-3 text-gold" />
-
-        <p className="mb-1 text-xs text-white/40">{title}</p>
-
-        <p className="truncate text-sm font-bold text-white">{value}</p>
-      </div>
-    );
-  }
 
   if (course === undefined) {
     return null;

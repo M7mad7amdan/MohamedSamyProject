@@ -24,7 +24,7 @@ import {
 import { useEffect, useState } from "react";
 
 export default function DashboardResults() {
-  const [currentStudent, setCurrentStudent] = useState(null);
+  const [, setCurrentStudent] = useState(null);
   const [studentResults, setStudentResults] = useState([]);
   const [exams, setExams] = useState([]);
   const [courses, setCourses] = useState([]);

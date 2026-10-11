@@ -10,14 +10,20 @@ import ChatMessage from "./Chat/ChatMessage";
 import { getMessages, sendMessage } from "../services/chatService";
 
 export default function Chat() {
-  
   const messagesContainerRef = useRef(null);
 
   const [isOpen, setIsOpen] = useState(false);
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
 
+
+
   useEffect(() => {
+    async function loadMessages() {
+      const data = await getMessages();
+      setMessages(data);
+    }
+
     loadMessages();
   }, []);
 
@@ -27,12 +33,7 @@ export default function Chat() {
     if (!container) return;
 
     container.scrollTop = container.scrollHeight;
-  }, [messages,isOpen]);
-
-  async function loadMessages() {
-    const data = await getMessages();
-    setMessages(data);
-  }
+  }, [messages, isOpen]);
 
   async function handleSubmit(e) {
     e.preventDefault();
