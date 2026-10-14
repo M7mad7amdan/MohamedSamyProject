@@ -39,15 +39,15 @@ export async function updateBook(bookId, patch) {
 
   if (!book) throw new Error("الكتاب غير موجود.");
 
-  Object.assign(book, patch);
+  Object.assign(book, patch); // عايز سؤال فيه
 
-  return { ...book };
+  return { ...book }; // عايز سؤال فيه
 }
 
 export async function deleteBook(bookId) {
   const index = books.findIndex((item) => String(item.id) === String(bookId));
 
-  if (index === -1) return false;
+  if (index === -1) return false; // عايز سؤال فيه
 
   books.splice(index, 1);
 
