@@ -15,6 +15,7 @@ import { getBooks } from "../../services/bookService";
 import BookCard from "./BookCard";
 
 export default function BooksSection() {
+  
   const [books, setBooks] = useState(null);
   const swiperRef = useRef(null);
 
