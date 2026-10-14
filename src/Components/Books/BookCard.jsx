@@ -61,9 +61,9 @@ export default function BookCard({ book }) {
         </div>
 
         {book.availability === "unavailable" ? (
-          <div className="mt-auto flex w-full items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] px-5 py-3.5 text-sm font-extrabold text-white/45">
+          <button disabled={true} className="mt-auto flex w-full items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] px-5 py-3.5 text-sm font-extrabold text-white/45 cursor-pointer">
             غير متاح للشراء حاليًا
-          </div>
+          </button>
         ) : (
           <Link
             to={`/books/${book.id}/purchase`}
