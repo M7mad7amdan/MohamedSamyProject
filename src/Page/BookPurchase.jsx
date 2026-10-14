@@ -242,7 +242,7 @@ export default function BookPurchase() {
           dir="rtl"
           className="relative overflow-hidden bg-midnight px-4 pb-24 pt-32 sm:px-6 lg:px-8"
         >
-          <div className="pointer-events-none absolute right-1/2 top-12 h-96 w-96 translate-x-1/2 rounded-full bg-gold/5 blur-[150px]" />
+          <div className="pointer-events-none absolute right-1/2 top-12 h-96 w-96 translate-x-1/2 rounded-full bg-gold/5 blur-[150px] will-change-transform" />
 
           <div className="relative z-10 mx-auto max-w-3xl">
             <div className="rounded-3xl border border-gold/15 bg-[radial-gradient(circle_at_80%_15%,rgba(212,175,55,0.10),transparent_35%),linear-gradient(180deg,#10233a_0%,#071220_100%)] p-7 shadow-[0_25px_70px_rgba(0,0,0,0.28)] sm:p-10">
@@ -339,8 +339,8 @@ export default function BookPurchase() {
         dir="rtl"
         className="relative overflow-hidden bg-midnight px-4 pb-24 pt-32 sm:px-6 lg:px-8"
       >
-        <div className="pointer-events-none absolute right-1/2 top-8 h-96 w-96 translate-x-1/2 rounded-full bg-gold/5 blur-[150px]" />
-        <div className="pointer-events-none absolute bottom-10 left-0 h-80 w-80 rounded-full bg-[#10243a]/50 blur-[130px]" />
+        <div className="pointer-events-none absolute right-1/2 top-8 h-96 w-96 translate-x-1/2 rounded-full bg-gold/5 blur-[150px] will-change-transform" />
+        <div className="pointer-events-none absolute bottom-10 left-0 h-80 w-80 rounded-full bg-[#10243a]/50 blur-[130px] will-change-transform" />
 
         <div className="relative z-10 mx-auto max-w-6xl">
           <Link

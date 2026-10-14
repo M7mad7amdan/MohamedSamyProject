@@ -21,8 +21,8 @@ export default function DashboardSupport() {
     <>
       {/* Header */}
       <section className="relative overflow-hidden border-b border-white/10 bg-[#091726] pt-20 lg:pt-24">
-        <div className="absolute -right-20 -top-20 h-72 w-72 rounded-full bg-gold/10 blur-[100px]" />
-        <div className="absolute -left-24 bottom-0 h-72 w-72 rounded-full bg-[#10243a]/55 blur-[110px]" />
+        <div className="absolute -right-20 -top-20 h-72 w-72 rounded-full bg-gold/10 blur-[100px] will-change-transform" />
+        <div className="absolute -left-24 bottom-0 h-72 w-72 rounded-full bg-[#10243a]/55 blur-[110px] will-change-transform" />
 
         <div className="relative z-10 px-5 py-12 sm:px-8 sm:py-14 lg:px-10 lg:py-16">
           <div className="mx-auto max-w-7xl">
@@ -155,7 +155,7 @@ function SupportCard({
 }) {
   return (
     <article className="group relative overflow-hidden rounded-2xl border border-white/10 bg-[#0c1a2b] p-6 shadow-[0_18px_50px_rgba(0,0,0,0.15)] transition-all duration-300 hover:-translate-y-1 hover:border-gold/20 hover:shadow-[0_22px_55px_rgba(0,0,0,0.22)] sm:p-7">
-      <div className="absolute -left-16 -top-16 h-40 w-40 rounded-full bg-gold/5 blur-3xl" />
+      <div className="absolute -left-16 -top-16 h-40 w-40 rounded-full bg-gold/5 blur-3xl will-change-transform" />
 
       <div className="relative z-10">
         <div className="flex items-start justify-between gap-4">

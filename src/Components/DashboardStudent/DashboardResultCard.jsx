@@ -24,7 +24,7 @@ export default function DashboardResultCard({ result, exam, course }) {
 
   return (
     <article className="group relative overflow-hidden rounded-2xl border border-white/10 bg-[#0c1a2b] p-5 shadow-[0_15px_45px_rgba(0,0,0,0.15)] transition-all duration-300 hover:-translate-y-1 hover:border-gold/20 hover:shadow-[0_18px_50px_rgba(0,0,0,0.22)] sm:p-6">
-      <div className="absolute -left-10 -top-10 h-28 w-28 rounded-full bg-gold/5 blur-3xl transition-opacity duration-300 group-hover:opacity-100" />
+      <div className="absolute -left-10 -top-10 h-28 w-28 rounded-full bg-gold/5 blur-3xl will-change-transform transition-opacity duration-300 group-hover:opacity-100" />
 
       <div className="relative z-10">
         <div className="flex items-start justify-between gap-4">

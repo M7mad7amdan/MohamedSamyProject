@@ -90,7 +90,7 @@ export default function Courses() {
           translate-x-1/2
           rounded-full
           bg-gold/5
-          blur-[130px]
+          blur-[130px] will-change-transform
         "
       />
 
@@ -106,7 +106,7 @@ export default function Courses() {
           w-72
           rounded-full
           bg-[#10243a]/50
-          blur-[120px]
+          blur-[120px] will-change-transform
         "
       />
 

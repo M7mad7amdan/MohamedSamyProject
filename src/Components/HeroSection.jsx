@@ -27,7 +27,7 @@ export default function HeroSection() {
         {/* Bottom fade */}
         <div className="absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-midnight via-midnight/20 to-transparent" />
         {/* Subtle gold glow مهمه */}
-        <div className="absolute -left-32 bottom-10 w-96 h-96 rounded-full bg-gold/10 blur-[120px]" />
+        <div className="absolute -left-32 bottom-10 w-96 h-96 rounded-full bg-gold/10 blur-[120px] will-change-transform" />
       </div>
       {/* Background End */}
 
@@ -111,7 +111,7 @@ export default function HeroSection() {
           {/* Master Start */}
           <div className="lg:flex order-1 md:order-2 relative items-center justify-center">
             {/* Gold ambient glow */}
-            <div className="absolute bottom-24 left-1/2 -translate-x-1/2 rounded-full bg-gold/10 blur-[90px]" />
+            <div className="absolute bottom-24 left-1/2 -translate-x-1/2 rounded-full bg-gold/10 blur-[90px] will-change-transform" />
 
             <img
               src={MasterImg}

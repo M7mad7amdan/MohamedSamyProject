@@ -133,9 +133,9 @@ export default function DashboardResults() {
       {/* Header Section */}
 
       <section className="relative overflow-hidden border-b border-white/10 bg-[#091726] pt-20 lg:pt-24">
-        <div className="absolute -right-20 -top-20 h-72 w-72 rounded-full bg-gold/10 blur-[100px]" />
+        <div className="absolute -right-20 -top-20 h-72 w-72 rounded-full bg-gold/10 blur-[100px] will-change-transform" />
 
-        <div className="absolute -left-24 bottom-0 h-72 w-72 rounded-full bg-[#10243a]/55 blur-[110px]" />
+        <div className="absolute -left-24 bottom-0 h-72 w-72 rounded-full bg-[#10243a]/55 blur-[110px] will-change-transform" />
 
         <div className="relative z-10 px-5 py-12 sm:px-8 sm:py-14 lg:px-10 lg:py-16">
           <div className="mx-auto max-w-7xl">
@@ -181,7 +181,7 @@ export default function DashboardResults() {
               </div>
 
               <div className="relative overflow-hidden rounded-2xl border border-gold/15 bg-[radial-gradient(circle_at_85%_15%,rgba(212,175,55,0.12),transparent_38%),#0c1a2b] p-6 shadow-[0_18px_50px_rgba(0,0,0,0.18)] sm:p-8">
-                <div className="absolute -left-16 -top-16 h-40 w-40 rounded-full bg-gold/5 blur-3xl" />
+                <div className="absolute -left-16 -top-16 h-40 w-40 rounded-full bg-gold/5 blur-3xl will-change-transform" />
 
                 <div className="relative z-10 grid grid-cols-1 gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
                   <div>

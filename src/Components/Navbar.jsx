@@ -32,7 +32,7 @@ export default function Navbar() {
       setIsScrolled(window.scrollY > 450);
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
@@ -63,10 +63,10 @@ export default function Navbar() {
     <nav
       className={`
         fixed top-0 left-0 right-0 z-80
-        transition-all duration-500
+        transition-[background-color,border-color,box-shadow] duration-500
         ${
           isScrolled
-            ? "bg-midnight/90 z-82 backdrop-blur-xl border-b border-gold/20 shadow-[0_8px_30px_rgba(0,0,0,0.25)]"
+            ? "bg-midnight/90 z-82 backdrop-blur-sm border-b border-gold/20 shadow-[0_8px_30px_rgba(0,0,0,0.25)]"
             : "bg-black/15 backdrop-blur-md border-b border-white/5"
         }
       `}

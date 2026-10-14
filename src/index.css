@@ -33,3 +33,12 @@
     direction: rtl;
   }
 }
+
+/* ===== توهج الخلفية بدون blur تقيل (تحسين الأداء) ===== */
+[class*="blur-["]:not([class*="backdrop-blur"]),
+[class*="blur-xl"]:not([class*="backdrop-blur"]),
+[class*="blur-3xl"]:not([class*="backdrop-blur"]) {
+  filter: none !important;
+  -webkit-mask-image: radial-gradient(closest-side, #000 0%, rgba(0, 0, 0, 0.6) 40%, transparent 100%) !important;
+  mask-image: radial-gradient(closest-side, #000 0%, rgba(0, 0, 0, 0.6) 40%, transparent 100%) !important;
+}

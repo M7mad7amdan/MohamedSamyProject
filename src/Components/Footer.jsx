@@ -57,9 +57,9 @@ export default function Footer() {
       "
     >
       {/* Background Decorations */}
-      <div className="pointer-events-none absolute right-1/2 top-0 h-72 w-72 translate-x-1/2 rounded-full bg-gold/5 blur-[120px]" />
+      <div className="pointer-events-none absolute right-1/2 top-0 h-72 w-72 translate-x-1/2 rounded-full bg-gold/5 blur-[120px] will-change-transform" />
 
-      <div className="pointer-events-none absolute bottom-0 left-0 h-64 w-64 rounded-full bg-[#10243a]/40 blur-[100px]" />
+      <div className="pointer-events-none absolute bottom-0 left-0 h-64 w-64 rounded-full bg-[#10243a]/40 blur-[100px] will-change-transform" />
 
       <div className="relative z-10 mx-auto max-w-7xl">
         {/* Main Footer Start */}
@@ -68,7 +68,7 @@ export default function Footer() {
           <div className="lg:col-span-5">
             <div className="mb-6 flex items-center gap-4">
               <div className="relative">
-                <div className="absolute inset-0 rounded-full bg-gold/10 blur-xl" />
+                <div className="absolute inset-0 rounded-full bg-gold/10 blur-xl will-change-transform" />
 
                 <img
                   src={MasterFooter}

@@ -72,8 +72,8 @@ export default function Books() {
         dir="rtl"
         className="relative overflow-hidden bg-midnight px-4 pb-24 pt-32 sm:px-6 lg:px-8"
       >
-        <div className="pointer-events-none absolute right-1/2 top-8 h-96 w-96 translate-x-1/2 rounded-full bg-gold/5 blur-[150px]" />
-        <div className="pointer-events-none absolute bottom-10 left-0 h-80 w-80 rounded-full bg-[#10243a]/50 blur-[130px]" />
+        <div className="pointer-events-none absolute right-1/2 top-8 h-96 w-96 translate-x-1/2 rounded-full bg-gold/5 blur-[150px] will-change-transform" />
+        <div className="pointer-events-none absolute bottom-10 left-0 h-80 w-80 rounded-full bg-[#10243a]/50 blur-[130px] will-change-transform" />
 
         <div className="relative z-10 mx-auto max-w-7xl">
           <div className="mx-auto mb-12 max-w-3xl text-center">

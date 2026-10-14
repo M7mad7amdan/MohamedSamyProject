@@ -283,8 +283,8 @@ export default function Signup() {
         {/* Main Card */}
         <div className="relative overflow-hidden rounded-[2rem] border border-blue-500/20 bg-[linear-gradient(180deg,rgba(10,23,41,0.88)_0%,rgba(6,14,26,0.92)_100%)] shadow-[0_35px_100px_rgba(0,0,0,0.7),inset_0_1px_0_rgba(255,255,255,0.08)] backdrop-blur-2xl">
           {/* Soft Blue/Gold Ambient Light */}
-          <div className="pointer-events-none absolute -right-32 -top-32 h-80 w-80 rounded-full bg-blue-600/10 blur-[100px]" />
-          <div className="pointer-events-none absolute -bottom-40 -left-32 h-80 w-80 rounded-full bg-blue-900/20 blur-[100px]" />
+          <div className="pointer-events-none absolute -right-32 -top-32 h-80 w-80 rounded-full bg-blue-600/10 blur-[100px] will-change-transform" />
+          <div className="pointer-events-none absolute -bottom-40 -left-32 h-80 w-80 rounded-full bg-blue-900/20 blur-[100px] will-change-transform" />
 
           {/* Subtle Inner Highlight */}
           <div className="pointer-events-none absolute inset-[1px] rounded-[2rem] border border-white/[0.03]" />

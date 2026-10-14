@@ -52,8 +52,8 @@ export default function BooksSection() {
       dir="rtl"
       className="relative overflow-hidden bg-charcoal px-4 py-24 sm:px-6 lg:px-8"
     >
-      <div className="pointer-events-none absolute right-1/2 top-16 h-80 w-80 translate-x-1/2 rounded-full bg-gold/5 blur-[130px]" />
-      <div className="pointer-events-none absolute bottom-16 left-0 h-72 w-72 rounded-full bg-[#10243a]/45 blur-[120px]" />
+      <div className="pointer-events-none absolute right-1/2 top-16 h-80 w-80 translate-x-1/2 rounded-full bg-gold/5 blur-[130px] will-change-transform" />
+      <div className="pointer-events-none absolute bottom-16 left-0 h-72 w-72 rounded-full bg-[#10243a]/45 blur-[120px] will-change-transform" />
 
       <div className="relative z-10 mx-auto max-w-7xl">
         <div className="mx-auto mb-14 max-w-2xl text-center">

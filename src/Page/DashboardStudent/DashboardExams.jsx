@@ -137,9 +137,9 @@ export default function DashboardExams() {
       {/* Page Header */}
 
       <section className="relative overflow-hidden border-b border-white/10 bg-[#091726] pt-20 lg:pt-24">
-        <div className="absolute -right-20 -top-20 h-72 w-72 rounded-full bg-gold/10 blur-[100px]" />
+        <div className="absolute -right-20 -top-20 h-72 w-72 rounded-full bg-gold/10 blur-[100px] will-change-transform" />
 
-        <div className="absolute -left-24 bottom-0 h-72 w-72 rounded-full bg-[#10243a]/55 blur-[110px]" />
+        <div className="absolute -left-24 bottom-0 h-72 w-72 rounded-full bg-[#10243a]/55 blur-[110px] will-change-transform" />
 
         <div className="mx-auto max-w-7xl px-5 py-12 sm:px-8 lg:px-10 lg:py-16">
           <div className="max-w-2xl">
@@ -162,7 +162,7 @@ export default function DashboardExams() {
       {/* Exams Content */}
 
       <section className="relative overflow-hidden px-5 py-12 sm:px-8 lg:px-10 lg:py-16">
-        <div className="pointer-events-none absolute right-1/2 top-20 h-80 w-80 translate-x-1/2 rounded-full bg-gold/5 blur-[130px]" />
+        <div className="pointer-events-none absolute right-1/2 top-20 h-80 w-80 translate-x-1/2 rounded-full bg-gold/5 blur-[130px] will-change-transform" />
 
         <div className="relative z-10 mx-auto max-w-7xl">
           {studentExams.length > 0 ? (

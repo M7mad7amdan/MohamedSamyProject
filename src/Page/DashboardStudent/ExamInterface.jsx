@@ -320,9 +320,9 @@ export default function ExamInterface() {
       {/* Exam Header */}
 
       <section className="relative overflow-hidden border-b border-white/10 bg-[#091726] pt-10 lg:pt-7">
-        <div className="absolute -right-20 -top-20 h-72 w-72 rounded-full bg-gold/10 blur-[100px]" />
+        <div className="absolute -right-20 -top-20 h-72 w-72 rounded-full bg-gold/10 blur-[100px] will-change-transform" />
 
-        <div className="absolute -left-24 bottom-0 h-72 w-72 rounded-full bg-[#10243a]/55 blur-[110px]" />
+        <div className="absolute -left-24 bottom-0 h-72 w-72 rounded-full bg-[#10243a]/55 blur-[110px] will-change-transform" />
 
         <div className="relative z-10 px-5 py-10 sm:px-8 lg:px-10 lg:py-12">
           <div className="mx-auto max-w-7xl">

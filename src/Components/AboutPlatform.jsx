@@ -59,7 +59,7 @@ export default function AboutPlatform() {
       className="relative overflow-hidden bg-midnight px-4 py-24 sm:px-6 lg:px-8"
     >
       {/* Ambient glow */}
-      <div className="pointer-events-none absolute right-1/2 top-32 h-72 w-72 translate-x-1/2 rounded-full bg-gold/5 blur-[120px]" />
+      <div className="pointer-events-none absolute right-1/2 top-32 h-72 w-72 translate-x-1/2 rounded-full bg-gold/5 blur-[120px] will-change-transform" />
 
       <div className="relative z-10 mx-auto max-w-7xl">
 
@@ -186,7 +186,7 @@ export default function AboutPlatform() {
             <div className="absolute left-1/2 top-0 h-1 w-24 -translate-x-1/2 rounded-b-full bg-gold" />
 
             {/* Background glow */}
-            <div className="pointer-events-none absolute left-1/2 top-24 h-40 w-40 -translate-x-1/2 rounded-full bg-gold/10 blur-[70px]" />
+            <div className="pointer-events-none absolute left-1/2 top-24 h-40 w-40 -translate-x-1/2 rounded-full bg-gold/10 blur-[70px] will-change-transform" />
 
             <div className="relative z-10">
 

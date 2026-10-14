@@ -47,9 +47,9 @@ export default function StudentOpinions() {
           Background Decoration
       ========================================================= */}
 
-      <div className="pointer-events-none absolute right-1/2 top-20 h-72 w-72 translate-x-1/2 rounded-full bg-gold/5 blur-[120px]" />
+      <div className="pointer-events-none absolute right-1/2 top-20 h-72 w-72 translate-x-1/2 rounded-full bg-gold/5 blur-[120px] will-change-transform" />
 
-      <div className="pointer-events-none absolute left-0 top-1/2 h-64 w-64 -translate-y-1/2 rounded-full bg-[#10243a]/50 blur-[100px]" />
+      <div className="pointer-events-none absolute left-0 top-1/2 h-64 w-64 -translate-y-1/2 rounded-full bg-[#10243a]/50 blur-[100px] will-change-transform" />
 
       {/* =========================================================
           Content

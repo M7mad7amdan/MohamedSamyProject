@@ -283,7 +283,7 @@ export default function CourseDetails() {
                     key={plan.id}
                     className="group relative overflow-hidden rounded-3xl border border-white/10 bg-[linear-gradient(180deg,rgba(10,23,41,0.9)_0%,rgba(6,14,26,0.96)_100%)] p-6 shadow-[0_20px_60px_rgba(0,0,0,0.25)] transition-all duration-300 hover:-translate-y-1 hover:border-gold/30 hover:shadow-[0_25px_70px_rgba(0,0,0,0.35)] sm:p-7"
                   >
-                    <div className="pointer-events-none absolute -right-20 -top-20 h-40 w-40 rounded-full bg-gold/10 blur-[60px]" />
+                    <div className="pointer-events-none absolute -right-20 -top-20 h-40 w-40 rounded-full bg-gold/10 blur-[60px] will-change-transform" />
 
                     <div className="relative">
                       <div className="mb-6 flex items-start justify-between gap-4">
