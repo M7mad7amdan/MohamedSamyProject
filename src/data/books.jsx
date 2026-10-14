@@ -13,7 +13,7 @@ const books = [
     description:
       "مراجعة منظمة تساعدك على فهم أهم موضوعات الدراسات الاجتماعية بطريقة واضحة.",
     price: 150,
-    availability: "unavailable",
+    availability: "available",
     image: book1,
   },
   {
@@ -35,7 +35,7 @@ const books = [
     description:
       "مراجعة شاملة بأسلوب بسيط تساعدك على تثبيت المعلومات والاستعداد للامتحان.",
     price: 250,
-    availability: "available",
+    availability: "unavailable",
     image: book3,
   },
   {
