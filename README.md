@@ -1,62 +1,62 @@
-# الغازي في التاريخ — README المرجعي للمشروع
+# Al-Ghazi in History: Project Reference README
 
-> **إلى أي مساعد ذكاء اصطناعي يقرأ هذا الملف:** هذا هو المرجع الأساسي للمشروع (القرارات + الحالة + خطة الـ Backend). اقرأه كاملًا قبل أي شيء. لو اختلف هذا الملف مع الكود الفعلي، **الكود الفعلي هو الأصح**، وبلّغ المستخدم بالاختلاف بدل ما تفترض. لا تكتب أي كود قبل ما تقرأ الملفات الحالية المرتبطة بالمهمة. **تصميم الـ Backend المعتمد موجود في القسم 16 (حرفيًا)**.
+> **To any AI assistant reading this file:** This is the project's primary reference (decisions + status + Backend plan). Read it in full before doing anything. If this file disagrees with the actual code, **the actual code is correct**; tell the user about the discrepancy instead of assuming. Do not write any code before you have read the existing files related to the task. **The approved Backend design is in Section 16 (verbatim).**
 
-آخر تحديث لهذا الملف: 3 أكتوبر 2026. (يحل محل نسخة 29 سبتمبر 2026 القديمة.)
+Last updated: October 3, 2026. (Replaces the old September 29, 2026 version.)
 
-ملفات مرجعية مصاحبة (في جذر المشروع): `STUDY_MAP.md` (خريطة مذاكرة الملفات بالترتيب)، `BACKEND_PLAN.md` (نسخة مستقلة من القسم 16)، `BACKEND_BUILD_PROMPT.md` (البرومت اللي بيُسلَّم للـ AI اللي هينفذ الـ Backend).
-
----
-
-## 1. فكرة المشروع
-
-**«الغازي في التاريخ»** منصة تعليمية متخصصة في التاريخ والدراسات الاجتماعية (مصر). صاحب المنصة مدرس واحد يُسمّى في المشروع **«المستر» / Master**.
-
-**الطالب يقدر:**
-
-- ينشئ حسابه ويختار صفه الدراسي.
-- يشترك في الكورسات.
-- يفتح الدروس ويشاهد الفيديوهات والمواد.
-- يدخل الامتحانات (**مرة واحدة فقط لكل امتحان**) ويشوف النتائج.
-- يشتري الكتب والمذكرات.
-- يتواصل من Chat داخل الموقع (والمستر يتابع من Telegram).
-
-**المستر يدير كل ده من Master Dashboard:** الطلاب، الكورسات والدروس، الامتحانات والأسئلة، النتائج والتصحيح، الاشتراكات، طلبات شراء الكتب، الكتب، صلاحيات الدروس الخاصة، وإعدادات الحساب والدفع.
-
-**أهم مبدأ للـ Master Dashboard:** لوحة **تشغيلية** يومية، واضحة، Premium وProfessional. مش منصة تحليلات (BI).
+Companion reference files (in the project root): `STUDY_MAP.md` (a study map of the files, in order), `BACKEND_PLAN.md` (a standalone copy of Section 16), `BACKEND_BUILD_PROMPT.md` (the prompt handed to the AI that will implement the Backend).
 
 ---
 
-## 2. الحالة الحالية (مهم جدًا)
+## 1. Project idea
 
-| الجزء | الحالة |
+**"Al-Ghazi in History"** is an educational platform specialized in History and Social Studies (Egypt). The platform's owner is a single teacher, referred to in the project as **"the Master" / Master**.
+
+**The student can:**
+
+- Create an account and choose their school grade.
+- Subscribe to courses.
+- Open lessons and watch videos and materials.
+- Take exams (**only once per exam**) and view results.
+- Buy books and handouts.
+- Communicate through a Chat inside the site (and the Master follows up from Telegram).
+
+**The Master manages all of this from the Master Dashboard:** students, courses and lessons, exams and questions, results and grading, subscriptions, book purchase requests, books, private lesson permissions, and account and payment settings.
+
+**The most important principle for the Master Dashboard:** a daily **operational** dashboard, clear, Premium and Professional. Not an analytics (BI) platform.
+
+---
+
+## 2. Current status (very important)
+
+| Part | Status |
 |---|---|
-| الموقع العام (Home / Login / Signup / Courses / CourseDetails / Books / Subscription / BookPurchase) | موجود |
-| Student Dashboard كامل (Home, Courses, Lesson, Exams, Exam, Result, Books, Profile, Support) | موجود |
-| **Master Dashboard (الـ 10 صفحات)** | **مبني بالكامل على Mock Data**: الرئيسية، الطلاب، الكورسات، الامتحانات، النتائج، الاشتراكات، طلبات الكتب، الكتب، صلاحيات الدروس، الإعدادات (مع صفحات النماذج والتفاصيل) |
-| بنية الكود | 3 طبقات: `data` (Mock) ← `services` (المنطق، async) ← الصفحات (عرض فقط). كل صفحة مستر لها `master<Page>Service` |
-| `npm run build` | ينجح. وأخطاء الـ lint الموجودة 6 ملفات قديمة (Chat, ChatMessage, CourseDetails, ExamTimer, DashboardResults, LessonPage) |
-| Backend / Supabase | **لا يوجد بعد.** كل الداتا Mock. خطته الكاملة في القسم 16 |
-| Auth حقيقي / حماية Routes | **لا يوجد** (`getCurrentStudent()` بترجع أول طالب Mock، والـ Login والـ Signup بيتحققوا من المدخلات فقط) |
-| الصور | مؤقتة في الذاكرة (تضيع مع الـ refresh) لحد ما نربط Cloudinary |
-| الشات | Mock حاليًا. **خارج نطاق Supabase**: هيتربط بـ Firebase لاحقًا كخدمة منفصلة |
+| Public site (Home / Login / Signup / Courses / CourseDetails / Books / Subscription / BookPurchase) | Exists |
+| Complete Student Dashboard (Home, Courses, Lesson, Exams, Exam, Result, Books, Profile, Support) | Exists |
+| **Master Dashboard (the 10 pages)** | **Fully built on Mock Data**: Home, Students, Courses, Exams, Results, Subscriptions, Book Requests, Books, Lesson Access, Settings (with form and details pages) |
+| Code structure | 3 layers: `data` (Mock) ← `services` (logic, async) ← pages (display only). Every Master page has a `master<Page>Service` |
+| `npm run build` / `npm run lint` | Build succeeds. The lint errors that were in 6 old files (Chat, ChatMessage, CourseDetails, ExamTimer, DashboardResults, LessonPage) have been fixed: **0 files with lint errors** |
+| Backend / Supabase | **Does not exist yet.** All data is Mock. The full plan is in Section 16 |
+| Real Auth / Route protection | **Does not exist** (`getCurrentStudent()` returns the first Mock student, and Login and Signup only validate inputs) |
+| Images | Temporary, in memory (lost on refresh) until we connect Cloudinary |
+| Chat | Mock for now. **Outside the Supabase scope**: it will be connected to Firebase later as a separate service |
 
-**قواعد الكود اللي المشروع ماشي عليها (لازم تتحافظ عليها في أي إضافة):**
+**Code rules the project follows (must be preserved in any addition):**
 
-1. الصفحات والمكونات **لا تستورد من `src/data`** (الاستثناء الوحيد: `utils/gradeUtils.jsx` لأن الصفوف ثابتة). كل شيء عبر `src/services`.
-2. دوال الـ services كلها `async`، وبترجع **نسخ** (`{...item}` أو `[...items]`) مش المصفوفة الأصلية، ومقارنة الـ IDs بـ `String(a) === String(b)`.
-3. قوائم المستر ترجع `{ rows, pagination: { page, pageSize, pageCount, total }, ...خيارات الفلاتر }` والفلترة والتقسيم داخل الـ service.
-4. كل نصوص الحالات العربية من `src/constants/statusLabels.js` عبر `getLabel()`.
-5. تعريف «الاشتراك النشط» في مكان واحد: `isEnrollmentActive` في `enrollmentService.jsx`.
-6. الصفحات بتحمّل بـ `hooks/useAsyncData` (loading أول مرة + error + إلغاء عند الخروج).
-7. العمليات متعددة الخطوات (قبول طلب، تصحيح، حذف متسلسل) موجودة كدالة واحدة في service، وفيها تعليق «ملاحظة Supabase»: بتتحول لـ RPC/CASCADE وقت الربط والصفحات ما تتغيرش.
-8. لوحة المستر: الهيرو بالصورة في **الرئيسية فقط**، وباقي الصفحات شريط علوي رفيع باسم الصفحة (`MasterTopbar` بيقرا اسم المستر ورابط Telegram من إعداداته).
+1. Pages and components **do not import from `src/data`** (the only exception: `utils/gradeUtils.jsx` because the grades are fixed). Everything goes through `src/services`.
+2. All service functions are `async`, and they return **copies** (`{...item}` or `[...items]`), not the original array, and IDs are compared with `String(a) === String(b)`.
+3. Master lists return `{ rows, pagination: { page, pageSize, pageCount, total }, ...filter options }`, and filtering and pagination happen inside the service.
+4. All Arabic status texts come from `src/constants/statusLabels.js` via `getLabel()`.
+5. The definition of an "active subscription" lives in one place: `isEnrollmentActive` in `enrollmentService.jsx`.
+6. Pages load with `hooks/useAsyncData` (loading on first load only + error + cancellation on exit).
+7. Multi-step operations (accepting a request, grading, cascading delete) exist as a single function in a service, with a "Supabase note" comment: they turn into RPC/CASCADE at connection time and the pages do not change.
+8. Master dashboard: the hero with the image is on the **Home page only**, and the other pages have a thin top bar with the page name (`MasterTopbar` reads the Master's name and Telegram link from his settings).
 
 ---
 
-## 3. التقنيات (من `package.json` الفعلي)
+## 3. Technologies (from the actual `package.json`)
 
-| المكتبة | الإصدار |
+| Library | Version |
 |---|---|
 | `@fontsource/cairo` | `^5.3.0` |
 | `@fortawesome/fontawesome-svg-core` | `^7.3.1` |
@@ -83,7 +83,7 @@
 | `eslint-plugin-react-refresh` | `^0.5.4` |
 | `globals` | `^17.11.0` |
 
-**الأوامر:**
+**Commands:**
 
 ```bash
 npm run dev   # vite
@@ -92,17 +92,17 @@ npm run lint   # eslint .
 npm run preview   # vite preview
 ```
 
-ملاحظات: Tailwind v4 (إعداد الألوان في `src/index.css` داخل `@theme`). مكتبة `@supabase/supabase-js` و`browser-image-compression` **لسه مش متثبتة** وهتتضاف وقت الربط.
+Notes: Tailwind v4 (color setup is in `src/index.css` inside `@theme`). The `@supabase/supabase-js` and `browser-image-compression` libraries are **not installed yet** and will be added at connection time.
 
 ---
 
-## 4. الهوية البصرية
+## 4. Visual identity
 
-- **الاتجاه:** Premium تاريخي، داكن (Dark Navy) مع ذهبي (Gold). عربي RTL بالكامل.
-- **الخط:** Cairo (400 / 600 / 700 / 800).
-- **الألوان (معرّفة في `src/index.css` داخل `@theme`):**
+- **Direction:** Historical Premium, dark (Dark Navy) with gold (Gold). Fully Arabic RTL.
+- **Font:** Cairo (400 / 600 / 700 / 800).
+- **Colors (defined in `src/index.css` inside `@theme`):**
 
-| المتغير | القيمة |
+| Variable | Value |
 |---|---|
 | `midnight` | `#0a1628` |
 | `charcoal` | `#132238` |
@@ -115,186 +115,186 @@ npm run preview   # vite preview
 | `success` | `#10b981` |
 | `danger` | `#ef4444` |
 
-- كل صفحة/Layout بتبدأ بـ `dir="rtl"` وخلفية `bg-midnight text-white`.
-- **Master:** نفس الهوية العامة (ألوان، خطوط، Spacing، Buttons، Cards) مع طابع Admin أكثر تنظيمًا. **مش** نظام بصري منفصل. الأنماط المشتركة (أزرار، حقول، كروت) في `Components/DashboardMaster/Shared/masterStyles.js`.
+- Every page/Layout starts with `dir="rtl"` and a `bg-midnight text-white` background.
+- **Master:** the same general identity (colors, fonts, spacing, buttons, cards) with a more organized Admin character. **Not** a separate visual system. The shared styles (buttons, fields, cards) are in `Components/DashboardMaster/Shared/masterStyles.js`.
 
 ---
 
 ---
 
-## 5. شجرة الملفات (الحالية فعليًا)
+## 5. File tree (as it actually is now)
 
-التفصيل الكامل بالترتيب التعليمي موجود في `STUDY_MAP.md`.
+The full detail in learning order is in `STUDY_MAP.md`.
 
 ```text
 
 src/
-  App.css                            ملف فاضي (0 بايت) ومش مستخدم. ممكن تمسحه أو تسيبه.
-  App.jsx                            خريطة كل الصفحات (Routes): العامة، لوحة الطالب، لوحة المستر. أي صفحة جديدة بتتسجل هنا.
-  index.css                          الألوان (Midnight/Gold...) وخط Cairo وإعدادات Tailwind العامة. مصدر الهوية البصرية.
-  main.jsx                           نقطة بداية التطبيق: بيركّب React في الصفحة ويلف App بـ StrictMode وBrowserRouter.
+  App.css                            Empty file (0 bytes) and unused. You can delete it or leave it.
+  App.jsx                            Map of all pages (Routes): public, student dashboard, Master dashboard. Any new page gets registered here.
+  index.css                          The colors (Midnight/Gold...), the Cairo font, and the global Tailwind settings. The source of the visual identity.
+  main.jsx                           App entry point: mounts React on the page and wraps App with StrictMode and BrowserRouter.
 
 src/Components/
-  AboutPlatform.jsx                  قسم «عن المنصة»: مميزات المنصة في بطاقات (فهم الأحداث، الاستعداد للامتحانات...).
-  Chat.jsx                           نافذة المحادثة (مساعد دراسي): جلب وإرسال رسائل.
-  CourseDetails.jsx                  صفحة تفاصيل الكورس (/courses/:id): الوحدات والدروس وخطط الاشتراك، وبتفحص اشتراك الطالب.
-  Courses.jsx                        قسم أحدث الكورسات: بيجيب الكورسات المنشورة ويعرضها كبطاقات تودي لصفحة التفاصيل.
-  ExamResult.jsx                     صفحة نتيجة الامتحان بعد التسليم (/exam-result/:id).
-  Footer.jsx                         تذييل الموقع: وصف المنصة وروابط التواصل والتنقل.
-  HeroSection.jsx                    قسم الهيرو: العنوان الكبير «تعلّم التاريخ بأسلوب مختلف» وصورة المستر وأزرار البداية.
-  Login.jsx                          نموذج تسجيل الدخول (تحقق من المدخلات). لسه مش بيعمل دخول فعلي: ينتظر الربط.
-  Navbar.jsx                         الشريط العلوي للموقع: الشعار والروابط وزرارين تسجيل الدخول وإنشاء حساب.
-  ScrollToTop.jsx                    بيرجّع الصفحة لأعلى كل ما تتنقل بين صفحتين.
-  Signup.jsx                         نموذج إنشاء حساب (تحقق من المدخلات). لسه مش بيحفظ طالب فعليًا: ينتظر الربط.
-  StudentOpinions.jsx                قسم آراء الطلاب (نصوص ثابتة في الملف).
+  AboutPlatform.jsx                  "About the platform" section: the platform's features in cards (understanding events, exam preparation...).
+  Chat.jsx                           Chat window (study assistant): fetches and sends messages.
+  CourseDetails.jsx                  Course details page (/courses/:id): units, lessons, and subscription plans, and it checks the student's subscription.
+  Courses.jsx                        Latest courses section: fetches the published courses and shows them as cards that lead to the details page.
+  ExamResult.jsx                     Exam result page after submission (/exam-result/:id).
+  Footer.jsx                         Site footer: platform description and contact and navigation links.
+  HeroSection.jsx                    Hero section: the big headline "Learn history in a different way", the Master's photo, and the start buttons.
+  Login.jsx                          Login form (input validation). It does not actually log in yet: it waits for the connection.
+  Navbar.jsx                         Site top bar: the logo, links, and two buttons for login and sign up.
+  ScrollToTop.jsx                    Returns the page to the top every time you navigate between two pages.
+  Signup.jsx                         Sign-up form (input validation). It does not actually save a student yet: it waits for the connection.
+  StudentOpinions.jsx                Student opinions section (static texts inside the file).
 
 src/Components/Books/
-  BookCard.jsx                       بطاقة كتاب عامة: صورة وسعر وزر شراء (أو «غير متاح للشراء» لو المستر أوقفه).
-  BooksSection.jsx                   قسم الكتب في الرئيسية: بيجيب الكتب ويعرض بطاقات BookCard.
+  BookCard.jsx                       Public book card: image, price, and a buy button (or "Not available for purchase" if the Master stopped it).
+  BooksSection.jsx                   Books section on the home page: fetches the books and shows BookCard cards.
 
 src/Components/Chat/
-  ChatMessage.jsx                    فقاعة رسالة واحدة.
+  ChatMessage.jsx                    A single message bubble.
 
 src/Components/DashboardMaster/
-  MasterLayout.jsx                   هيكل لوحة المستر: السايدبار الثابت + الشريط العلوي + مكان الصفحات.
-  MasterSidebar.jsx                  القائمة الجانبية (10 أقسام) وزر الهمبرجر على الموبايل وتسجيل الخروج.
-  MasterTopbar.jsx                   الرئيسية: Hero بصورة. باقي الصفحات: شريط رفيع باسم الصفحة. الاسم وTelegram من إعدادات المستر.
+  MasterLayout.jsx                   Master dashboard structure: the fixed sidebar + the top bar + the place for the pages.
+  MasterSidebar.jsx                  Side menu (10 sections), the hamburger button on mobile, and logout.
+  MasterTopbar.jsx                   Home: Hero with an image. The other pages: a thin bar with the page name. The name and Telegram come from the Master's settings.
 
 src/Components/DashboardMaster/Shared/
-  MasterConfirmModal.jsx             نافذة تأكيد (للحذف والعمليات الخطرة).
-  MasterEmptyState.jsx               رسالة «لا توجد بيانات».
-  MasterField.jsx                    حقل نموذج موحّد (نص/قائمة/نص طويل) مع رسالة خطأ.
-  MasterImageField.jsx               رفع صورة مؤقت (يتبدل بـ Cloudinary).
-  MasterModal.jsx                    نافذة عامة للنماذج والتفاصيل.
-  MasterNotice.jsx                   شريط نجاح/خطأ.
-  MasterPageHeader.jsx               عنوان الصفحة + زر رجوع/إضافة.
-  MasterPagination.jsx               التقسيم على صفحات (بتاخد itemLabel: طالب/كورس...).
-  MasterSearchFilters.jsx            شريط البحث والفلاتر.
-  MasterStatCard.jsx                 كارت رقم/إحصائية.
-  MasterStatusBadge.jsx              بادج الحالة الملون.
-  MasterTabs.jsx                     تبويبات (في صفحة الاشتراكات).
-  masterStyles.js                    كلاسات الأزرار والحقول والكروت المشتركة (الهوية في مكان واحد).
+  MasterConfirmModal.jsx             Confirmation window (for deletion and dangerous operations).
+  MasterEmptyState.jsx               "No data" message.
+  MasterField.jsx                    Unified form field (text/list/long text) with an error message.
+  MasterImageField.jsx               Temporary image upload (to be replaced by Cloudinary).
+  MasterModal.jsx                    General window for forms and details.
+  MasterNotice.jsx                   Success/error bar.
+  MasterPageHeader.jsx               Page title + back/add button.
+  MasterPagination.jsx               Pagination (takes itemLabel: student/course...).
+  MasterSearchFilters.jsx            Search and filters bar.
+  MasterStatCard.jsx                 Number/statistic card.
+  MasterStatusBadge.jsx              Colored status badge.
+  MasterTabs.jsx                     Tabs (in the Subscriptions page).
+  masterStyles.js                    Shared classes for buttons, fields, and cards (the identity in one place).
 
 src/Components/DashboardStudent/
-  DashboardBookCard.jsx              بطاقة كتاب لطالب: شراء/قيد المراجعة/تم الشراء/مرفوض/غير متاح.
-  DashboardExamCard.jsx              بطاقة امتحان في قائمة الطالب.
-  DashboardLayout.jsx                هيكل لوحة الطالب: السايدبار + مكان الصفحات.
-  DashboardResultCard.jsx            بطاقة نتيجة.
-  DashboardSidebar.jsx               قائمة لوحة الطالب الجانبية.
-  EmptyState.jsx                     رسالة «لا يوجد محتوى» للطالب.
-  ExamQuestionCard.jsx               عرض سؤال واحد بكل أنواعه (اختيار، صح/خطأ، مقالي).
-  ExamQuestionNavigator.jsx          أرقام الأسئلة للتنقل السريع.
-  ExamTimer.jsx                      مؤقت الامتحان.
+  DashboardBookCard.jsx              Book card for a student: buy/under review/purchased/rejected/unavailable.
+  DashboardExamCard.jsx              Exam card in the student's list.
+  DashboardLayout.jsx                Student dashboard structure: the sidebar + the place for the pages.
+  DashboardResultCard.jsx            Result card.
+  DashboardSidebar.jsx               Student dashboard side menu.
+  EmptyState.jsx                     "No content" message for the student.
+  ExamQuestionCard.jsx               Displays a single question in all its types (multiple choice, true/false, essay).
+  ExamQuestionNavigator.jsx          Question numbers for quick navigation.
+  ExamTimer.jsx                      Exam timer.
 
 src/Components/Lesson/
-  LessonContentList.jsx              قائمة وحدات ودروس الكورس بجانب الدرس.
-  LessonMaterials.jsx                زر تحميل الملزمة (بيحوّل رابط Google Drive لرابط تنزيل).
-  LessonVideo.jsx                    مشغّل فيديو YouTube: بيستخرج الـ Video ID ويعرضه في iframe.
+  LessonContentList.jsx              List of the course's units and lessons beside the lesson.
+  LessonMaterials.jsx                Handout download button (converts a Google Drive link to a download link).
+  LessonVideo.jsx                    YouTube video player: extracts the Video ID and shows it in an iframe.
 
 src/Page/
-  BookPurchase.jsx                   صفحة شراء كتاب: بيانات الدفع ورقم التحويل وإرسال الطلب.
-  Books.jsx                          صفحة كل الكتب (/books) مع فلتر الصف. (بتستورد grades من data مباشرة: تتحول لـ getGrades.)
-  Home.jsx                           الصفحة الرئيسية: بترص الأقسام بالترتيب (Navbar ← Hero ← عن المنصة ← الكورسات ← الكتب ← الآراء ← Footer).
-  Subscription.jsx                   صفحة الاشتراك في كورس بخطة معينة: بيانات الدفع وإرسال طلب الاشتراك.
+  BookPurchase.jsx                   Book purchase page: payment details, transfer number, and sending the request.
+  Books.jsx                          All books page (/books) with a grade filter. (It imports grades from data directly: to be converted to getGrades.)
+  Home.jsx                           Home page: arranges the sections in order (Navbar ← Hero ← About ← Courses ← Books ← Opinions ← Footer).
+  Subscription.jsx                   Page for subscribing to a course with a specific plan: payment details and sending the subscription request.
 
 src/Page/DashboardMaster/
-  MasterBookForm.jsx                 إضافة/تعديل كتاب.
-  MasterBookRequests.jsx             طلبات شراء الكتب: مراجعة وقبول ورفض وحذف.
-  MasterBooks.jsx                    كروت الكتب: متاح/غير متاح، معاينة، حذف.
-  MasterCourseContent.jsx            إدارة وحدات ودروس كورس (ترتيب ↑↓، فيديو، ملزمة).
-  MasterCourseForm.jsx               إضافة/تعديل كورس (البيانات والأسعار والصورة).
-  MasterCourses.jsx                  كروت الكورسات: نشر/إخفاء/حذف مع ملخص بالسجلات.
-  MasterExamForm.jsx                 إضافة/تعديل امتحان (الكورس والوحدة والوقت).
-  MasterExamManage.jsx               إدارة أسئلة الامتحان + استيراد JSON بمعاينة.
-  MasterExams.jsx                    قائمة الامتحانات وإحصائياتها (حالة الوقت تتحسب تلقائيًا).
-  MasterHome.jsx                     رئيسية المستر: إحصائيات، أشياء تحتاج إجراء، آخر النتائج والنشاطات.
-  MasterLessonAccess.jsx             منح وسحب صلاحيات دروس فردية.
-  MasterPlaceholder.jsx              صفحة «قيد التجهيز» لأي رابط ملوش صفحة.
-  MasterResultDetails.jsx            تفاصيل نتيجة وتصحيح الأسئلة المقالية.
-  MasterResults.jsx                  قائمة النتائج: فلاتر، تصدير CSV، حذف.
-  MasterSettings.jsx                 الحساب، كلمة المرور، بيانات الدفع، المساحة المستخدمة، حذف المحادثات.
-  MasterStudentDetails.jsx           تفاصيل طالب: بياناته واشتراكاته ونتائجه وطلباته، وتعديل/حذف.
-  MasterStudents.jsx                 قائمة الطلاب: بحث وفلاتر وتقسيم وإحصائيات.
-  MasterSubscriptions.jsx            تبويبان: الاشتراكات (تمديد/إنهاء) وطلبات الاشتراك (قبول/رفض/حذف).
+  MasterBookForm.jsx                 Add/edit a book.
+  MasterBookRequests.jsx             Book purchase requests: review, accept, reject, and delete.
+  MasterBooks.jsx                    Book cards: available/unavailable, preview, delete.
+  MasterCourseContent.jsx            Manage a course's units and lessons (ordering ↑↓, video, handout).
+  MasterCourseForm.jsx               Add/edit a course (data, prices, and image).
+  MasterCourses.jsx                  Course cards: publish/hide/delete with a summary of the records.
+  MasterExamForm.jsx                 Add/edit an exam (course, unit, and time).
+  MasterExamManage.jsx               Manage the exam's questions + JSON import with preview.
+  MasterExams.jsx                    List of exams and their statistics (the time status is calculated automatically).
+  MasterHome.jsx                     Master home: statistics, things that need action, latest results and activities.
+  MasterLessonAccess.jsx             Grant and revoke individual lesson permissions.
+  MasterPlaceholder.jsx              "Under preparation" page for any link that has no page.
+  MasterResultDetails.jsx            Result details and grading of essay questions.
+  MasterResults.jsx                  Results list: filters, CSV export, delete.
+  MasterSettings.jsx                 The account, password, payment details, storage used, delete chats.
+  MasterStudentDetails.jsx           Student details: their data, subscriptions, results, and requests, and edit/delete.
+  MasterStudents.jsx                 Students list: search, filters, pagination, and statistics.
+  MasterSubscriptions.jsx            Two tabs: subscriptions (extend/end) and subscription requests (accept/reject/delete).
 
 src/Page/DashboardStudent/
-  DashboardBooks.jsx                 كتب الطالب وحالة شراء كل كتاب.
-  DashboardCourses.jsx               كورسات الطالب المشترك فيها.
-  DashboardExams.jsx                 قائمة امتحانات الطالب وحالتها (متاح/منتهي/تم الحل).
-  DashboardHome.jsx                  رئيسية الطالب: ملخص كورساته وامتحاناته ونتائجه.
-  DashboardProfile.jsx               الملف الشخصي للطالب.
-  DashboardResults.jsx               كل نتائج الطالب.
-  DashboardSupport.jsx               صفحة الدعم (بتعرض مكوّن المحادثة).
-  ExamInterface.jsx                  شاشة حل الامتحان: المؤقت والتنقل والتسليم (مرة واحدة) وتسجيل النتيجة.
-  LessonPage.jsx                     صفحة الدرس: الفيديو والملزمة وقائمة المحتوى (فيها روابط demo مؤقتة).
+  DashboardBooks.jsx                 The student's books and the purchase status of each book.
+  DashboardCourses.jsx               The courses the student is subscribed to.
+  DashboardExams.jsx                 The student's exams list and their status (available/ended/solved).
+  DashboardHome.jsx                  Student home: summary of their courses, exams, and results.
+  DashboardProfile.jsx               The student's profile.
+  DashboardResults.jsx               All the student's results.
+  DashboardSupport.jsx               Support page (shows the chat component).
+  ExamInterface.jsx                  Exam-taking screen: the timer, navigation, submission (once), and recording the result.
+  LessonPage.jsx                     Lesson page: the video, the handout, and the content list (contains temporary demo links).
 
 src/constants/
-  statusLabels.js                    كل نصوص الحالات العربية (مقبول، نشط، منتهي...) في مكان واحد.
+  statusLabels.js                    All Arabic status texts (accepted, active, ended...) in one place.
 
 src/data/
-  bookPurchaseRequests.jsx           طلبات شراء الكتب (الحالة قيد المراجعة/مقبول/مرفوض).
-  bookPurchases.jsx                  سجل ملكية الكتب: مين اشترى إيه (منفصل عن الطلبات).
-  books.jsx                          الكتب: العنوان والسعر والصورة وتوفر الشراء.
-  chatMessages.jsx                   رسائل تجريبية للمحادثة.
-  courses.jsx                        الكورسات التجريبية: العنوان والصف والصورة وخطط الاشتراك (شهري/ترم) وحقل النشر.
-  enrollments.jsx                    اشتراكات الطلاب في الكورسات: الخطة وتاريخ البداية والنهاية والحالة.
-  exams.jsx                          الامتحانات: الكورس والوحدة والمدة ووقت البداية والنهاية وحالة النشر.
-  grades.jsx                         الصفوف الدراسية الستة (إعدادي وثانوي).
-  lessonAccess.jsx                   صلاحيات الدروس الفردية الممنوحة لطلاب.
-  lessons.jsx                        الوحدات ودروس كل وحدة (مصفوفة وحدات، وكل وحدة فيها مصفوفة دروس).
-  masterProfile.jsx                  بيانات المستر (الاسم، رابط Telegram...). الـ Topbar بتقرا منها.
-  paymentMethods.jsx                 وسائل الدفع (فودافون كاش: الرقم وواتساب الدعم).
-  questions.jsx                      أسئلة الامتحانات (اختيار، صح/خطأ، مقالي) وإجاباتها الصحيحة.
-  results.jsx                        نتائج الطلاب: الدرجة، الإجابات، درجات المقالي، وحالة التصحيح.
-  storageUsage.jsx                   أرقام استهلاك المساحة التجريبية وحدود الخطط المجانية.
-  students.jsx                       طلاب تجريبيون (الاسم، الصف، الهاتف، ولي الأمر...).
-  subscriptionRequests.jsx           طلبات الاشتراك (رقم الطلب، رقم التحويل، الحالة).
+  bookPurchaseRequests.jsx           Book purchase requests (status under review/accepted/rejected).
+  bookPurchases.jsx                  Book ownership record: who bought what (separate from the requests).
+  books.jsx                          Books: title, price, image, and purchase availability.
+  chatMessages.jsx                   Sample messages for the chat.
+  courses.jsx                        Sample courses: title, grade, image, subscription plans (monthly/term), and the publish field.
+  enrollments.jsx                    Students' subscriptions to courses: the plan, start and end date, and status.
+  exams.jsx                          Exams: course, unit, duration, start and end time, and publish status.
+  grades.jsx                         The six school grades (preparatory and secondary).
+  lessonAccess.jsx                   Individual lesson permissions granted to students.
+  lessons.jsx                        Units and each unit's lessons (an array of units, and each unit has an array of lessons).
+  masterProfile.jsx                  The Master's data (name, Telegram link...). The Topbar reads from it.
+  paymentMethods.jsx                 Payment methods (Vodafone Cash: the number and support WhatsApp).
+  questions.jsx                      Exam questions (multiple choice, true/false, essay) and their correct answers.
+  results.jsx                        Students' results: the score, the answers, essay scores, and grading status.
+  storageUsage.jsx                   Sample storage consumption numbers and free-plan limits.
+  students.jsx                       Sample students (name, grade, phone, guardian...).
+  subscriptionRequests.jsx           Subscription requests (request number, transfer number, status).
 
 src/hooks/
-  useAsyncData.js                    hook للتحميل: loading أول مرة، error، وإلغاء عند الخروج. بتستخدمه صفحات المستر.
+  useAsyncData.js                    Loading hook: loading on first load, error, and cancellation on exit. Used by the Master pages.
 
 src/services/
-  bookPurchaseService.jsx            طلبات شراء الكتب: إنشاء (مع منع غير المتاح/المملوك)، قبول (بيسجل الملكية)، رفض، حذف.
-  bookPurchasesService.jsx           سجل ملكية الكتب (حذف الطلب ما بيلغيها).
-  bookService.jsx                    الكتب: جلب وإنشاء وتعديل وحذف، وisBookAvailable.
-  chatService.jsx                    رسائل المحادثة: جلب، إرسال، حذف الكل.
-  courseService.jsx                  الكورسات: للطالب المنشور بس، وللمستر كل الكورسات + إنشاء/تعديل/حذف.
-  enrollmentService.jsx              الاشتراكات: isEnrollmentActive (التعريف الوحيد للاشتراك النشط)، إنشاء، تمديد، إنهاء.
-  examService.jsx                    الامتحانات: للطالب المنشور بس، وللمستر كل العمليات.
-  gradeService.jsx                   getGrades: بترجع الصفوف.
-  lessonAccessService.jsx            صلاحيات الدروس: منح، جلب، سحب.
-  lessonService.jsx                  الوحدات والدروس: عرض للطالب + إنشاء/تعديل/حذف/ترتيب للمستر.
-  masterBookRequestsService.jsx      منطق طلبات الكتب.
-  masterBooksService.jsx             منطق الكتب والحذف المتسلسل.
-  masterCoursesService.jsx           منطق صفحات الكورسات والمحتوى والحذف المتسلسل.
-  masterDashboardService.jsx         بتجمع وتحسب ملخص الرئيسية.
-  masterExamsService.jsx             منطق الامتحانات والأسئلة واستيراد/فحص JSON.
-  masterLessonAccessService.jsx      منطق الصلاحيات مع منع التكرار.
-  masterProfileService.jsx           بيانات المستر: قراءة وتحديث.
-  masterResultsService.jsx           منطق النتائج والتصحيح (الدرجة النهائية = تلقائي + مقالي) والتصدير.
-  masterSettingsService.jsx          منطق الإعدادات والتحقق من المدخلات.
-  masterStorageService.jsx           أرقام المساحة (تجريبية) بنفس شكل الربط النهائي.
-  masterStudentsService.jsx          منطق صفحتي الطلاب (قائمة وتفاصيل وحذف متسلسل).
-  masterSubscriptionsService.jsx     منطق الاشتراكات والطلبات.
-  paymentMethodService.jsx           وسائل الدفع: جلب النشطة وتعديل بيانات الحساب.
-  questionService.jsx                الأسئلة: جلب، إضافة، تعديل، حذف، ترتيب.
-  resultService.jsx                  النتائج: تسجيل تسليم الامتحان (مرة واحدة فقط)، جلب، حذف، تحديث.
-  studentService.jsx                 getCurrentStudent (حاليًا أول طالب)، وجلب/تعديل/حذف الطلاب.
-  subscriptionService.jsx            طلبات الاشتراك: إنشاء، قبول (بيفعّل الاشتراك)، رفض، حذف.
+  bookPurchaseService.jsx            Book purchase requests: create (blocking unavailable/owned), accept (records the ownership), reject, delete.
+  bookPurchasesService.jsx           Book ownership record (deleting the request does not cancel it).
+  bookService.jsx                    Books: fetch, create, edit, delete, and isBookAvailable.
+  chatService.jsx                    Chat messages: fetch, send, delete all.
+  courseService.jsx                  Courses: for the student only the published ones, and for the Master all courses + create/edit/delete.
+  enrollmentService.jsx              Subscriptions: isEnrollmentActive (the only definition of an active subscription), create, extend, end.
+  examService.jsx                    Exams: for the student only the published ones, and for the Master all operations.
+  gradeService.jsx                   getGrades: returns the grades.
+  lessonAccessService.jsx            Lesson permissions: grant, fetch, revoke.
+  lessonService.jsx                  Units and lessons: display for the student + create/edit/delete/order for the Master.
+  masterBookRequestsService.jsx      Book requests logic.
+  masterBooksService.jsx             Books logic and cascading delete.
+  masterCoursesService.jsx           Courses pages logic, content, and cascading delete.
+  masterDashboardService.jsx         Collects and calculates the home summary.
+  masterExamsService.jsx             Exams and questions logic and JSON import/validation.
+  masterLessonAccessService.jsx      Permissions logic with duplicate prevention.
+  masterProfileService.jsx           The Master's data: read and update.
+  masterResultsService.jsx           Results and grading logic (final score = auto + essay) and export.
+  masterSettingsService.jsx          Settings logic and input validation.
+  masterStorageService.jsx           Storage numbers (sample) in the same shape as the final connection.
+  masterStudentsService.jsx          Logic for the two students pages (list, details, and cascading delete).
+  masterSubscriptionsService.jsx     Subscriptions and requests logic.
+  paymentMethodService.jsx           Payment methods: fetch the active ones and edit the account details.
+  questionService.jsx                Questions: fetch, add, edit, delete, order.
+  resultService.jsx                  Results: record the exam submission (once only), fetch, delete, update.
+  studentService.jsx                 getCurrentStudent (currently the first student), and fetch/edit/delete students.
+  subscriptionService.jsx            Subscription requests: create, accept (activates the subscription), reject, delete.
 
 src/utils/
-  downloadTextFile.js                تنزيل ملف نصي من المتصفح (تصدير CSV للنتائج).
-  formatters.js                      تنسيق التاريخ والوقت والسعر والحجم (MB/GB) وتحويل التاريخ لقيمة input.
-  gradeUtils.jsx                     دالة getGradeLabel: بتحوّل كود الصف (first-preparatory) لاسمه بالعربي.
-  paginate.js                        paginate: تقسيم قائمة لصفحات، وmatchesSearch: بحث نصي. بيستخدمهم كل service قائمة.
-  readImageFile.js                   قراءة صورة من الجهاز مؤقتًا. هتتبدل برفع Cloudinary وقت الربط.
+  downloadTextFile.js                Download a text file from the browser (CSV export of results).
+  formatters.js                      Formatting of date, time, price, and size (MB/GB), and converting a date to an input value.
+  gradeUtils.jsx                     The getGradeLabel function: converts the grade code (first-preparatory) to its Arabic name.
+  paginate.js                        paginate: splits a list into pages, and matchesSearch: text search. Every list service uses them.
+  readImageFile.js                   Temporarily reads an image from the device. It will be replaced by a Cloudinary upload at connection time.
 ```
 
-الصور في `src/assets/` (Background, Books, Logo, Master). والملفات العامة في `public/`.
+Images are in `src/assets/` (Background, Books, Logo, Master). And public files are in `public/`.
 
 ---
 
-## 6. الـ Routes (من `App.jsx` الفعلي)
+## 6. The Routes (from the actual `App.jsx`)
 
 ```text
 /                                          -> Home
@@ -339,115 +339,117 @@ profile                                    -> DashboardProfile
 support                                    -> DashboardSupport
 ```
 
-- لوحة المستر كلها Nested داخل `/dashboard-master` (`MasterLayout`)، وآخر Route فيها `path="*"` بيعرض `MasterPlaceholder`.
-- أي صفحة مستر جديدة تتسجل **فوق** سطر الـ placeholder.
-- لا يوجد حماية Routes حاليًا (ده شغل الـ Backend).
+- The whole Master dashboard is nested inside `/dashboard-master` (`MasterLayout`), and its last Route is `path="*"`, which shows `MasterPlaceholder`.
+- Any new Master page is registered **above** the placeholder line.
+- There is currently no Route protection (that is the Backend's job).
 
 ---
 
-## 7. طبقة البيانات (Mock Data + Services)
+## 7. Data layer (Mock Data + Services)
 
-### ملفات الداتا (`src/data`)
+### Data files (`src/data`)
 
-- `bookPurchaseRequests.jsx`: طلبات شراء الكتب (الحالة قيد المراجعة/مقبول/مرفوض).
-- `bookPurchases.jsx`: سجل ملكية الكتب: مين اشترى إيه (منفصل عن الطلبات).
-- `books.jsx`: الكتب: العنوان والسعر والصورة وتوفر الشراء.
-- `chatMessages.jsx`: رسائل تجريبية للمحادثة.
-- `courses.jsx`: الكورسات التجريبية: العنوان والصف والصورة وخطط الاشتراك (شهري/ترم) وحقل النشر.
-- `enrollments.jsx`: اشتراكات الطلاب في الكورسات: الخطة وتاريخ البداية والنهاية والحالة.
-- `exams.jsx`: الامتحانات: الكورس والوحدة والمدة ووقت البداية والنهاية وحالة النشر.
-- `grades.jsx`: الصفوف الدراسية الستة (إعدادي وثانوي).
-- `lessonAccess.jsx`: صلاحيات الدروس الفردية الممنوحة لطلاب.
-- `lessons.jsx`: الوحدات ودروس كل وحدة (مصفوفة وحدات، وكل وحدة فيها مصفوفة دروس).
-- `masterProfile.jsx`: بيانات المستر (الاسم، رابط Telegram...). الـ Topbar بتقرا منها.
-- `paymentMethods.jsx`: وسائل الدفع (فودافون كاش: الرقم وواتساب الدعم).
-- `questions.jsx`: أسئلة الامتحانات (اختيار، صح/خطأ، مقالي) وإجاباتها الصحيحة.
-- `results.jsx`: نتائج الطلاب: الدرجة، الإجابات، درجات المقالي، وحالة التصحيح.
-- `storageUsage.jsx`: أرقام استهلاك المساحة التجريبية وحدود الخطط المجانية.
-- `students.jsx`: طلاب تجريبيون (الاسم، الصف، الهاتف، ولي الأمر...).
-- `subscriptionRequests.jsx`: طلبات الاشتراك (رقم الطلب، رقم التحويل، الحالة).
+- `bookPurchaseRequests.jsx`: Book purchase requests (status under review/accepted/rejected).
+- `bookPurchases.jsx`: Book ownership record: who bought what (separate from the requests).
+- `books.jsx`: Books: title, price, image, and purchase availability.
+- `chatMessages.jsx`: Sample messages for the chat.
+- `courses.jsx`: Sample courses: title, grade, image, subscription plans (monthly/term), and the publish field.
+- `enrollments.jsx`: Students' subscriptions to courses: the plan, start and end date, and status.
+- `exams.jsx`: Exams: course, unit, duration, start and end time, and publish status.
+- `grades.jsx`: The six school grades (preparatory and secondary).
+- `lessonAccess.jsx`: Individual lesson permissions granted to students.
+- `lessons.jsx`: Units and each unit's lessons (an array of units, and each unit has an array of lessons).
+- `masterProfile.jsx`: The Master's data (name, Telegram link...). The Topbar reads from it.
+- `paymentMethods.jsx`: Payment methods (Vodafone Cash: the number and support WhatsApp).
+- `questions.jsx`: Exam questions (multiple choice, true/false, essay) and their correct answers.
+- `results.jsx`: Students' results: the score, the answers, essay scores, and grading status.
+- `storageUsage.jsx`: Sample storage consumption numbers and free-plan limits.
+- `students.jsx`: Sample students (name, grade, phone, guardian...).
+- `subscriptionRequests.jsx`: Subscription requests (request number, transfer number, status).
 
-### أنواع الأسئلة الفعلية (لا تخترع أنواع جديدة)
+### The actual question types (do not invent new types)
 
 ```js
-// اختيار من متعدد
-{ type: "multiple-choice", question, options: [..4 خيارات..], correctAnswer: 1 /* index */, score, order }
-// صح/خطأ
+// Multiple choice
+{ type: "multiple-choice", question, options: [..4 options..], correctAnswer: 1 /* index */, score, order }
+// True/false
 { type: "true-false", question, correctAnswer: true /* boolean */, score, order }
-// مقالي (بدون correctAnswer، يحتاج تصحيح يدوي)
+// Essay (no correctAnswer, needs manual grading)
 { type: "essay", question, score, order }
 ```
 
 
-### شكل النتيجة (`results.jsx`)
+### Result shape (`results.jsx`)
 
 ```text
 { id, studentId, examId,
-  autoScore, autoTotal,      // درجة الأسئلة التلقائية
-  score, total,              // الدرجة المعروضة (تتحدث بعد تصحيح المقالي: تلقائي + مقالي)
+  autoScore, autoTotal,      // score of the auto-graded questions
+  score, total,              // the displayed score (updates after essay grading: auto + essay)
   essayCount, essayTotal, essayScores: { [questionId]: number },
   correctAnswers, incorrectAnswers, answers,
   status: "graded" | "needs_review", submittedAt }
 ```
 
-الامتحان مرة واحدة فقط: `submitExamAttempt` بترفض التسليم الثاني.
+The exam is allowed only once: `submitExamAttempt` rejects the second submission.
 
-### الـ Services (الدوال المصدّرة فعليًا)
+### The Services (the functions actually exported)
 
-- **bookPurchaseService.jsx**: `getPendingBookPurchaseRequest`، `getBookPurchaseRequestsByStudentId`، `createBookPurchaseRequest`، `getBookPurchaseRequests`، `getBookPurchaseRequestById`، `approveBookPurchaseRequest`، `rejectBookPurchaseRequest`، `deleteBookPurchaseRequestsByStudentId`، `deleteBookPurchaseRequest`، `deleteAllBookPurchaseRequests`، `deleteBookPurchaseRequestsByBookId`
-- **bookPurchasesService.jsx**: `getBookPurchases`، `getPurchasedBookIdsByStudentId`، `hasBookPurchase`، `createBookPurchase`، `deleteBookPurchasesByStudentId`، `deleteBookPurchasesByBookId`
-- **bookService.jsx**: `isBookAvailable`، `getBooks`، `getBookById`، `getBooksByStudentGrade`، `createBook`، `updateBook`، `deleteBook`، `deleteAllBooks`
-- **chatService.jsx**: `getMessages`، `sendMessage`، `deleteAllMessages`
-- **courseService.jsx**: `getCourses`، `getCourseById`، `getAllCourses`، `getAnyCourseById`، `createCourse`، `updateCourse`، `deleteCourse`، `deleteAllCourses`
-- **enrollmentService.jsx**: `getEnrollments`، `getEnrollmentsByStudentId`، `isEnrollmentActive`، `isStudentEnrolled`، `createEnrollment`، `deleteEnrollmentsByStudentId`، `getEnrollmentState`، `getEnrollmentById`، `updateEnrollment`، `deleteEnrollmentsByCourseId`
-- **examService.jsx**: `getExamsByCourseId`، `getExamById`، `getExams`، `getAnyExamById`، `createExam`، `updateExam`، `deleteExam`، `deleteExamsByCourseId`، `deleteAllExams`، `detachExamsFromUnit`
+- **bookPurchaseService.jsx**: `getPendingBookPurchaseRequest`, `getBookPurchaseRequestsByStudentId`, `createBookPurchaseRequest`, `getBookPurchaseRequests`, `getBookPurchaseRequestById`, `approveBookPurchaseRequest`, `rejectBookPurchaseRequest`, `deleteBookPurchaseRequestsByStudentId`, `deleteBookPurchaseRequest`, `deleteAllBookPurchaseRequests`, `deleteBookPurchaseRequestsByBookId`
+- **bookPurchasesService.jsx**: `getBookPurchases`, `getPurchasedBookIdsByStudentId`, `hasBookPurchase`, `createBookPurchase`, `deleteBookPurchasesByStudentId`, `deleteBookPurchasesByBookId`
+- **bookService.jsx**: `isBookAvailable`, `getBooks`, `getBookById`, `getBooksByStudentGrade`, `createBook`, `updateBook`, `deleteBook`, `deleteAllBooks`
+- **chatService.jsx**: `getMessages`, `sendMessage`, `deleteAllMessages`
+- **courseService.jsx**: `getCourses`, `getCourseById`, `getAllCourses`, `getAnyCourseById`, `createCourse`, `updateCourse`, `deleteCourse`, `deleteAllCourses`
+- **enrollmentService.jsx**: `getEnrollments`, `getEnrollmentsByStudentId`, `isEnrollmentActive`, `isStudentEnrolled`, `createEnrollment`, `deleteEnrollmentsByStudentId`, `getEnrollmentState`, `getEnrollmentById`, `updateEnrollment`, `deleteEnrollmentsByCourseId`
+- **examService.jsx**: `getExamsByCourseId`, `getExamById`, `getExams`, `getAnyExamById`, `createExam`, `updateExam`, `deleteExam`, `deleteExamsByCourseId`, `deleteAllExams`, `detachExamsFromUnit`
 - **gradeService.jsx**: `getGrades`
-- **lessonAccessService.jsx**: `getLessonAccessByStudentId`، `getLessonAccessByStudentAndCourseId`، `hasLessonAccess`، `grantLessonAccess`، `deleteLessonAccessByStudentId`، `getAllLessonAccess`، `getLessonAccessById`، `revokeLessonAccess`، `deleteLessonAccessByCourseId`، `deleteLessonAccessByLessonIds`
-- **lessonService.jsx**: `getUnitsByCourseId`، `getAllUnitsByCourseId`، `getAllUnits`، `getUnitById`، `createUnit`، `updateUnit`، `deleteUnit`، `deleteUnitsByCourseId`، `moveUnit`، `createLesson`، `updateLesson`، `deleteLesson`، `moveLesson`، `getAllLessons`
-- **masterBookRequestsService.jsx**: `getMasterBookRequestsSummary`، `getMasterBookRequestsPage`، `getMasterBookRequestDetails`، `approveMasterBookRequest`، `rejectMasterBookRequest`، `deleteMasterBookRequest`، `deleteAllMasterBookRequests`
-- **masterBooksService.jsx**: `getMasterBooksSummary`، `getMasterBooksPage`، `getMasterBookPreview`، `getMasterBookForm`، `saveMasterBook`، `setMasterBookAvailability`، `getMasterBookDeleteSummary`، `getMasterBooksDeleteAllSummary`، `deleteMasterBook`، `deleteAllMasterBooks`
-- **masterCoursesService.jsx**: `getMasterCoursesPage`، `getMasterCourseForm`، `saveMasterCourse`، `setMasterCoursePublished`، `getMasterCourseContent`، `saveMasterUnit`، `moveMasterUnit`، `getMasterUnitDeleteSummary`، `deleteMasterUnit`، `saveMasterLesson`، `moveMasterLesson`، `deleteMasterLesson`، `getMasterCourseDeleteSummary`، `getMasterCoursesDeleteAllSummary`، `deleteMasterCourse`، `deleteAllMasterCourses`
+- **lessonAccessService.jsx**: `getLessonAccessByStudentId`, `getLessonAccessByStudentAndCourseId`, `hasLessonAccess`, `grantLessonAccess`, `deleteLessonAccessByStudentId`, `getAllLessonAccess`, `getLessonAccessById`, `revokeLessonAccess`, `deleteLessonAccessByCourseId`, `deleteLessonAccessByLessonIds`
+- **lessonService.jsx**: `getUnitsByCourseId`, `getAllUnitsByCourseId`, `getAllUnits`, `getUnitById`, `createUnit`, `updateUnit`, `deleteUnit`, `deleteUnitsByCourseId`, `moveUnit`, `createLesson`, `updateLesson`, `deleteLesson`, `moveLesson`, `getAllLessons`
+- **masterBookRequestsService.jsx**: `getMasterBookRequestsSummary`, `getMasterBookRequestsPage`, `getMasterBookRequestDetails`, `approveMasterBookRequest`, `rejectMasterBookRequest`, `deleteMasterBookRequest`, `deleteAllMasterBookRequests`
+- **masterBooksService.jsx**: `getMasterBooksSummary`, `getMasterBooksPage`, `getMasterBookPreview`, `getMasterBookForm`, `saveMasterBook`, `setMasterBookAvailability`, `getMasterBookDeleteSummary`, `getMasterBooksDeleteAllSummary`, `deleteMasterBook`, `deleteAllMasterBooks`
+- **masterCoursesService.jsx**: `getMasterCoursesPage`, `getMasterCourseForm`, `saveMasterCourse`, `setMasterCoursePublished`, `getMasterCourseContent`, `saveMasterUnit`, `moveMasterUnit`, `getMasterUnitDeleteSummary`, `deleteMasterUnit`, `saveMasterLesson`, `moveMasterLesson`, `deleteMasterLesson`, `getMasterCourseDeleteSummary`, `getMasterCoursesDeleteAllSummary`, `deleteMasterCourse`, `deleteAllMasterCourses`
 - **masterDashboardService.jsx**: `getMasterDashboardSummary`
-- **masterExamsService.jsx**: `getExamTimeStatus`، `getMasterExamsSummary`، `getMasterExamsPage`، `getMasterExamForm`، `saveMasterExam`، `setMasterExamPublished`، `getMasterExamDetails`، `getMasterExamQuestionsPage`، `getEmptyQuestionForm`، `getMasterQuestionForm`، `saveMasterQuestion`، `moveMasterQuestion`، `deleteMasterQuestion`، `deleteAllMasterExamQuestions`، `previewMasterQuestionsImport`، `importMasterQuestions`، `getMasterExamDeleteSummary`، `getMasterExamsDeleteAllSummary`، `deleteMasterExam`، `deleteAllMasterExams`
-- **masterLessonAccessService.jsx**: `getMasterLessonAccessSummary`، `getMasterLessonAccessPage`، `getMasterLessonAccessOptions`، `grantMasterLessonAccess`، `revokeMasterLessonAccess`
-- **masterProfileService.jsx**: `getMasterProfile`، `updateMasterProfile`
-- **masterResultsService.jsx**: `getMasterResultsSummary`، `getMasterResultsPage`، `exportMasterResultsCsv`، `getMasterResultDetails`، `saveMasterResultGrades`، `deleteMasterResult`، `deleteAllMasterResults`
-- **masterSettingsService.jsx**: `getMasterSettings`، `saveMasterProfile`، `changeMasterPassword`، `saveMasterPaymentMethod`، `getMasterChatSummary`، `deleteAllMasterChatMessages`
+- **masterExamsService.jsx**: `getExamTimeStatus`, `getMasterExamsSummary`, `getMasterExamsPage`, `getMasterExamForm`, `saveMasterExam`, `setMasterExamPublished`, `getMasterExamDetails`, `getMasterExamQuestionsPage`, `getEmptyQuestionForm`, `getMasterQuestionForm`, `saveMasterQuestion`, `moveMasterQuestion`, `deleteMasterQuestion`, `deleteAllMasterExamQuestions`, `previewMasterQuestionsImport`, `importMasterQuestions`, `getMasterExamDeleteSummary`, `getMasterExamsDeleteAllSummary`, `deleteMasterExam`, `deleteAllMasterExams`
+- **masterLessonAccessService.jsx**: `getMasterLessonAccessSummary`, `getMasterLessonAccessPage`, `getMasterLessonAccessOptions`, `grantMasterLessonAccess`, `revokeMasterLessonAccess`
+- **masterProfileService.jsx**: `getMasterProfile`, `updateMasterProfile`
+- **masterResultsService.jsx**: `getMasterResultsSummary`, `getMasterResultsPage`, `exportMasterResultsCsv`, `getMasterResultDetails`, `saveMasterResultGrades`, `deleteMasterResult`, `deleteAllMasterResults`
+- **masterSettingsService.jsx**: `getMasterSettings`, `saveMasterProfile`, `changeMasterPassword`, `saveMasterPaymentMethod`, `getMasterChatSummary`, `deleteAllMasterChatMessages`
 - **masterStorageService.jsx**: `getMasterStorageUsage`
-- **masterStudentsService.jsx**: `getMasterStudentGradeOptions`، `getMasterStudentsSummary`، `getMasterStudentsPage`، `getMasterStudentDetails`، `updateMasterStudent`، `deleteMasterStudent`، `deleteAllMasterStudents`
-- **masterSubscriptionsService.jsx**: `getMasterSubscriptionsSummary`، `getMasterEnrollmentsPage`، `extendMasterEnrollment`، `endMasterEnrollment`، `getMasterSubscriptionRequestsPage`، `getMasterSubscriptionRequestDetails`، `approveMasterSubscriptionRequest`، `rejectMasterSubscriptionRequest`، `deleteMasterSubscriptionRequest`، `deleteAllMasterSubscriptionRequests`
-- **paymentMethodService.jsx**: `getActivePaymentMethods`، `getPaymentMethodById`، `getAllPaymentMethods`، `updatePaymentMethod`
-- **questionService.jsx**: `getQuestionsByExamId`، `getAllQuestions`، `getQuestionById`، `createQuestion`، `createQuestions`، `updateQuestion`، `deleteQuestion`، `moveQuestion`، `deleteQuestionsByExamId`
-- **resultService.jsx**: `getResults`، `getResultsByStudentId`، `getResultByExamId`، `getResultById`، `hasSubmittedExam`، `submitExamAttempt`، `updateResult`، `deleteResult`، `deleteAllResults`، `deleteResultsByExamIds`، `deleteResultsByStudentId`
-- **studentService.jsx**: `getCurrentStudent`، `getStudents`، `getStudentById`، `updateStudent`، `deleteStudent`، `deleteAllStudents`
-- **subscriptionService.jsx**: `getSubscriptionRequestsByStudentId`، `getPendingSubscriptionRequest`، `createSubscriptionRequest`، `getSubscriptionRequests`، `getSubscriptionRequestById`، `approveSubscriptionRequest`، `rejectSubscriptionRequest`، `deleteSubscriptionRequestsByStudentId`، `deleteSubscriptionRequest`، `deleteAllSubscriptionRequests`، `deleteSubscriptionRequestsByCourseId`
+- **masterStudentsService.jsx**: `getMasterStudentGradeOptions`, `getMasterStudentsSummary`, `getMasterStudentsPage`, `getMasterStudentDetails`, `updateMasterStudent`, `deleteMasterStudent`, `deleteAllMasterStudents`
+- **masterSubscriptionsService.jsx**: `getMasterSubscriptionsSummary`, `getMasterEnrollmentsPage`, `extendMasterEnrollment`, `endMasterEnrollment`, `getMasterSubscriptionRequestsPage`, `getMasterSubscriptionRequestDetails`, `approveMasterSubscriptionRequest`, `rejectMasterSubscriptionRequest`, `deleteMasterSubscriptionRequest`, `deleteAllMasterSubscriptionRequests`
+- **paymentMethodService.jsx**: `getActivePaymentMethods`, `getPaymentMethodById`, `getAllPaymentMethods`, `updatePaymentMethod`
+- **questionService.jsx**: `getQuestionsByExamId`, `getAllQuestions`, `getQuestionById`, `createQuestion`, `createQuestions`, `updateQuestion`, `deleteQuestion`, `moveQuestion`, `deleteQuestionsByExamId`
+- **resultService.jsx**: `getResults`, `getResultsByStudentId`, `getResultByExamId`, `getResultById`, `hasSubmittedExam`, `submitExamAttempt`, `updateResult`, `deleteResult`, `deleteAllResults`, `deleteResultsByExamIds`, `deleteResultsByStudentId`
+- **studentService.jsx**: `getCurrentStudent`, `getStudents`, `getStudentById`, `updateStudent`, `deleteStudent`, `deleteAllStudents`
+- **subscriptionService.jsx**: `getSubscriptionRequestsByStudentId`, `getPendingSubscriptionRequest`, `createSubscriptionRequest`, `getSubscriptionRequests`, `getSubscriptionRequestById`, `approveSubscriptionRequest`, `rejectSubscriptionRequest`, `deleteSubscriptionRequestsByStudentId`, `deleteSubscriptionRequest`, `deleteAllSubscriptionRequests`, `deleteSubscriptionRequestsByCourseId`
 
 ---
 
-## 8. نظام الصفوف الدراسية
+## 8. The school grades system
 
-مصدره الوحيد `src/data/grades.jsx`:
+Its only source is `src/data/grades.jsx`:
 
 ```js
 const grades = [
-  { id: "first-preparatory",  label: "أولى إعدادي",  stage: "المرحلة الإعدادية" },
-  { id: "second-preparatory", label: "ثانية إعدادي", stage: "المرحلة الإعدادية" },
-  { id: "third-preparatory",  label: "ثالثة إعدادي", stage: "المرحلة الإعدادية" },
-  { id: "first-secondary",    label: "أولى ثانوي",   stage: "المرحلة الثانوية" },
-  { id: "second-secondary",   label: "ثانية ثانوي",  stage: "المرحلة الثانوية" },
-  { id: "third-secondary",    label: "ثالثة ثانوي",  stage: "المرحلة الثانوية" },
+  { id: "first-preparatory",  label: "أولى إعدادي",  stage: "المرحلة الإعدادية" },   // label: "First Preparatory", stage: "Preparatory stage"
+  { id: "second-preparatory", label: "ثانية إعدادي", stage: "المرحلة الإعدادية" },   // label: "Second Preparatory"
+  { id: "third-preparatory",  label: "ثالثة إعدادي", stage: "المرحلة الإعدادية" },   // label: "Third Preparatory"
+  { id: "first-secondary",    label: "أولى ثانوي",   stage: "المرحلة الثانوية" },    // label: "First Secondary", stage: "Secondary stage"
+  { id: "second-secondary",   label: "ثانية ثانوي",  stage: "المرحلة الثانوية" },    // label: "Second Secondary"
+  { id: "third-secondary",    label: "ثالثة ثانوي",  stage: "المرحلة الثانوية" },    // label: "Third Secondary"
 ];
 export default grades;
 ```
 
-- الـ **logic يعتمد على الـ IDs** دائمًا، والـ **Label للعرض فقط**. ممنوع استخدام الأسماء العربية في أي منطق.
-- `stage` موجود كـ Metadata في تعريف الصفوف فقط، **ولا يُخزَّن** داخل الطالب أو الكتاب أو الكورس.
-- العرض: `getGradeLabel(gradeId)` من `src/utils/gradeUtils.jsx`.
-- Signup بيعرض الصفوف ديناميكيًا من `grades` ويخزن الـ Grade ID.
+(The Arabic `label` and `stage` values are the actual data in the code and are kept as they are; the English glosses in the comments are for this document only.)
 
-**ربط الكورسات بالصفوف:**
+- The **logic always depends on the IDs**, and the **Label is for display only**. Using the Arabic names in any logic is forbidden.
+- `stage` exists only as Metadata in the grade definition, and is **not stored** inside the student, the book, or the course.
+- Display: `getGradeLabel(gradeId)` from `src/utils/gradeUtils.jsx`.
+- Signup shows the grades dynamically from `grades` and stores the Grade ID.
 
-| الكورس | الصف |
+**Linking courses to grades:**
+
+| Course | Grade |
 |---|---|
 | `social-studies-preparatory` | `second-preparatory` |
 | `history-secondary` | `third-secondary` |
@@ -457,538 +459,539 @@ export default grades;
 
 ---
 
-## 9. قواعد نظام الطالب (موجودة وبتأثر على Master)
+## 9. Student system rules (they exist and they affect Master)
 
-### الاشتراك في الكورس
+### Subscribing to a course
 
-`غير مشترك` ← «اشترك في الكورس» | `قيد المراجعة` ← «الاشتراك قيد المراجعة» | `مقبول` ← «متابعة الكورس»
+`Not subscribed` ← "Subscribe to the course" | `Under review` ← "Subscription under review" | `Accepted` ← "Continue the course"
 
-### شراء الكتاب
+### Buying a book
 
-`لا يوجد طلب` ← «شراء الكتاب» | `قيد المراجعة` ← «الطلب قيد المراجعة» | `مقبول` ← «تم شراء الكتاب» | `مرفوض` ← «إعادة طلب الشراء» | `غير متاح` ← «غير متاح للشراء حاليًا».
-**الرفض رجع** (بدون سبب)، انظر القسم 12.
+`No request` ← "Buy the book" | `Under review` ← "Request under review" | `Accepted` ← "Book purchased" | `Rejected` ← "Re-request purchase" | `Unavailable` ← "Currently unavailable for purchase".
+**Rejection is back** (with no reason), see Section 12.
 
-### الدفع
+### Payment
 
-- المستر واحد. طريقة الدفع الحالية **Vodafone Cash** فقط. **لا Payment Gateway.**
-- الطالب يحوّل، ثم يدخل **رقم العملية (`transactionId`)** ويرسل الطلب. المستر يراجع **ويقبل أو يرفض** (الرفض بدون سبب، والطالب يقدر يقدّم طلب جديد).
-- **لا رفع صورة إثبات دفع** (اتشالت). المراجعة بتعتمد على: طريقة الدفع + رقم التحويل + المبلغ + تاريخ الطلب.
-- طرق الدفع بتتعدّل من **Settings** (مش صفحة مستقلة في الـ Sidebar).
+- There is one Master. The current payment method is **Vodafone Cash** only. **No Payment Gateway.**
+- The student transfers, then enters the **transaction number (`transactionId`)** and sends the request. The Master reviews **and accepts or rejects** (rejection with no reason, and the student can submit a new request).
+- **No uploading of a payment-proof image** (it was removed). The review depends on: the payment method + the transfer number + the amount + the request date.
+- Payment methods are edited from **Settings** (not a separate page in the Sidebar).
 
-### صلاحيات الدروس (Lesson Access)
+### Lesson permissions (Lesson Access)
 
-- الفكرة الأصلية «اشتراك بالحصة» اترفضت (معقدة). البديل: **صلاحية خاصة لدرس** يمنحها المستر.
-- الطالب يفتح الدرس لو: عنده اشتراك نشط في الكورس، **أو** عنده صلاحية خاصة للدرس.
-- **مش شرط** يكون مشترك في الكورس لكي ياخد صلاحية درس.
-- الصلاحية = `طالب + كورس + درس`. المستر يقدر يمنح درسًا واحدًا أو عدة دروس في العملية الواحدة.
-- بدون مدة، بدون سعر، بدون Payment لكل درس، **ممنوع Duplicate**.
-- **سحب الصلاحية:** لو الطالب غير مشترك ← يفقد الوصول. لو مشترك ← يفضل يفتح الدرس لأن اشتراكه بيسمح.
+- The original idea of "per-session subscription" was rejected (too complicated). The alternative: a **special permission for a lesson** granted by the Master.
+- The student opens the lesson if: they have an active subscription to the course, **or** they have a special permission for the lesson.
+- It is **not required** that they be subscribed to the course in order to get a lesson permission.
+- The permission = `student + course + lesson`. The Master can grant one lesson or several lessons in a single operation.
+- No duration, no price, no Payment per lesson, **no Duplicates allowed**.
+- **Revoking the permission:** if the student is not subscribed ← they lose access. If subscribed ← they still open the lesson because their subscription allows it.
 
-### معرّفات الكتب والطلبات
+### Book and request identifiers
 
-| الشيء | المعرّف | مثال |
+| Item | Identifier | Example |
 |---|---|---|
-| الكتاب | ID من السيرفر | `BOOK-1025` |
-| طلب شراء الكتاب | Request Number من السيرفر | `BK-2051` |
-| التحويل | `transactionId` اللي كتبه الطالب | — |
+| The book | ID from the server | `BOOK-1025` |
+| Book purchase request | Request Number from the server | `BK-2051` |
+| The transfer | the `transactionId` the student typed | — |
 
-مفيش Reference داخلي ثالث. (في الـ Mock حاليًا الكتب `book-1…6`، وطلبات الكتب بادئتها `BK-` وطلبات الاشتراك `MK-`.)
+There is no third internal Reference. (In the Mock currently the books are `book-1…6`, the book requests are prefixed `BK-` and the subscription requests `MK-`.)
 
-### الكتب
+### Books
 
-- **لا سنة دراسية (`academicYear`) للكتب.** لو كتاب قديم انتهى، المستر يخليه «غير متاح للشراء» ويضيف كتابًا جديدًا.
-- حالة الكتاب: **متاح للشراء / غير متاح للشراء** (`availability`). لو غير متاح، الطالب **لا يقدر يعمل طلب جديد**، لكن اللي اشتراه قبل كده **يفضل عنده**. الملكية في `bookPurchases.jsx` (منفصلة عن الطلبات)، فحذف الطلب المقبول ما بيلغيش الشراء.
-- الكتاب: `ID، اسم، وصف، grade، price، cover، availability`. لا مخزون، لا شحن، لا كوبونات، لا سلة.
-
----
-
-### الامتحانات
-
-- الامتحان **مرة واحدة فقط** لكل طالب (`hasSubmittedExam` + رفض التسليم الثاني). لو الطالب فتح امتحان سلّمه يتحول لصفحة النتيجة.
-- الكورس والامتحان لهم حالة نشر: غير المنشور **مخفي عن الطالب** (`getCourses` / `getExamsByCourseId` بترجّع المنشور فقط، وللمستر `getAllCourses` / `getExams`).
-
+- **No school year (`academicYear`) for books.** If an old book has expired, the Master makes it "unavailable for purchase" and adds a new book.
+- Book status: **available for purchase / unavailable for purchase** (`availability`). If unavailable, the student **cannot make a new request**, but whoever bought it before **keeps it**. Ownership is in `bookPurchases.jsx` (separate from the requests), so deleting the accepted request does not cancel the purchase.
+- The book: `ID, name, description, grade, price, cover, availability`. No inventory, no shipping, no coupons, no cart.
 
 ---
 
-## 10. Master Dashboard: القرارات العامة
+### Exams
 
-### حالة التنفيذ
+- The exam is **once only** per student (`hasSubmittedExam` + rejecting the second submission). If the student opens an exam they already submitted, they are redirected to the result page.
+- Courses and exams have a publish status: unpublished ones are **hidden from the student** (`getCourses` / `getExamsByCourseId` return only the published ones, and for the Master there are `getAllCourses` / `getExams`).
+
+
+---
+
+## 10. Master Dashboard: general decisions
+
+### Implementation status
 
 ```text
-1. تصور كل صفحات Master        ← انتهى
-2. وظيفة كل صفحة بالتفصيل      ← انتهى
-3. Layout + Sidebar + Topbar + Shared Components  ← اتبنوا
-4. الصفحات العشر على Mock Data  ← اتبنوا
-5. الربط بـ Backend            ← الخطوة الجاية (القسم 16)
+1. Conceptualizing all Master pages        ← done
+2. The function of each page in detail     ← done
+3. Layout + Sidebar + Topbar + Shared Components  ← built
+4. The ten pages on Mock Data              ← built
+5. Connecting to the Backend               ← the next step (Section 16)
 ```
 
-### الـ Layout
+### The Layout
 
-- Sidebar ثابت على Desktop، وHamburger على الشاشات الصغيرة.
-- Topbar بسيط. **لا يوجد Footer** في Master.
-- Layout مستقل عن `DashboardLayout` الخاص بالطالب (الطالب فيه Navbar + Footer + Chat، وMaster لا).
-- Hero تاريخي **في Home فقط**. صفحات الجداول الثقيلة بدون Hero.
-- زر **Telegram** في الـ Topbar/Home.
-- مفيش Charts/Analytics إلا لو لها قيمة تشغيلية واضحة.
+- A fixed Sidebar on Desktop, and a Hamburger on small screens.
+- A simple Topbar. **There is no Footer** in Master.
+- A Layout independent from the student's `DashboardLayout` (the student has Navbar + Footer + Chat, and Master does not).
+- A historical Hero **in Home only**. Heavy table pages have no Hero.
+- A **Telegram** button in the Topbar/Home.
+- No Charts/Analytics unless they have a clear operational value.
 
-### Sidebar Master النهائي (بالترتيب)
+### The final Master Sidebar (in order)
 
 ```text
-الرئيسية
-الطلاب
-الكورسات والمحتوى
-الامتحانات والأسئلة
-النتائج
-الاشتراكات وطلبات الاشتراك
-طلبات شراء الكتب
-الكتب والمذكرات
-صلاحيات الدروس
-الإعدادات
+Home
+Students
+Courses and content
+Exams and questions
+Results
+Subscriptions and subscription requests
+Book purchase requests
+Books and handouts
+Lesson permissions
+Settings
 ----------------
-تسجيل الخروج
+Log out
 ```
 
-لا يوجد Teacher Chat. الطالب يكلم المستر من Chat الموقع، والمستر يتابع من **Telegram**.
+There is no Teacher Chat. The student talks to the Master from the site's Chat, and the Master follows up from **Telegram**.
 
-### Shared Components (بدون مبالغة في الـ abstraction)
+### Shared Components (without over-abstraction)
 
-Page Header، Search، Filters، Stat Cards، Tables، Cards، Pagination، Empty States، Buttons، Status Badges، **ConfirmModal**. نشارك فقط اللي يستاهل.
+Page Header, Search, Filters, Stat Cards, Tables, Cards, Pagination, Empty States, Buttons, Status Badges, **ConfirmModal**. We share only what deserves it.
 
 ### ConfirmModal
 
-Component **واحد** مشترك لكل عمليات الحذف/التأكيد. بياخد: عنوان، رسالة، نوع العملية، أزرار تأكيد/إلغاء. الرسالة تختلف حسب المحذوف.
+**One** Component shared for all delete/confirm operations. It takes: a title, a message, the operation type, and confirm/cancel buttons. The message differs depending on what is being deleted.
 
-### قاعدة الحذف
+### Deletion rule
 
-كل صفحة مهمة تدعم حسب الحاجة **حذف عنصر واحد** و**حذف الكل**، مع Confirmation قوي والرسالة توضّح **ماذا سيُحذف وماذا لن يُحذف**.
-
----
+Every important page supports, as needed, **deleting a single item** and **deleting all**, with a strong Confirmation, and the message clarifies **what will be deleted and what will not be deleted**.
 
 ---
 
-## 11. صفحات Master بالتفصيل
+---
 
-### 11.1 الرئيسية (Home)
+## 11. Master pages in detail
+
+### 11.1 Home
 
 ```text
-Hero تاريخي: «مرحبًا بك يا مستر — لوحة التحكم الرئيسية لمنصة الغازي في التاريخ»
-   [ تواصل مع الطلاب على Telegram ]
+Historical Hero: "Welcome, Master. The main control panel of the Al-Ghazi in History platform"
+   [ Contact the students on Telegram ]
 
-4 Stat Cards: عدد الطلاب | عدد الكورسات | الاشتراكات النشطة | تحتاج مراجعة
+4 Stat Cards: Number of students | Number of courses | Active subscriptions | Need review
 
-الأشياء التي تحتاج إجراء:
-   طلبات الاشتراك الجديدة → مراجعة
-   طلبات شراء الكتب     → مراجعة
-   امتحانات تحتاج تصحيحًا → بدء التصحيح
+Things that need action:
+   New subscription requests → Review
+   Book purchase requests    → Review
+   Exams that need grading   → Start grading
 
-آخر 3 نتائج
-اختصارات سريعة: إضافة كورس | إضافة امتحان | إضافة كتاب | عرض الطلاب
-آخر النشاطات: آخر 5 فقط
+Latest 3 results
+Quick shortcuts: Add course | Add exam | Add book | View students
+Latest activities: only the latest 5
 ```
 
-لا يوجد: Charts، Analytics، جداول كاملة، قوائم طلاب كاملة، Chat Center، أزرار حذف، Footer.
+Not included: Charts, Analytics, full tables, full student lists, Chat Center, delete buttons, Footer.
 
-### 11.2 الطلاب
+### 11.2 Students
 
-- العنوان: «الطلاب — إدارة الطلاب وبياناتهم واشتراكاتهم».
-- 3 Info Cards: إجمالي الطلاب | الطلاب المشتركين | طلبات جديدة.
-- بحث: الاسم / البريد / الهاتف. فلاتر: الصف الدراسي، حالة الاشتراك.
-- جدول: الطالب، الصف، رقم الهاتف، الكورسات، حالة الاشتراك، إجراءات (عرض التفاصيل، حذف).
-- Pagination: 20 طالب في الصفحة.
-- **صفحة تفاصيل الطالب (كاملة):** الاسم، email، phone، parent phone، grade، governorate، الكورسات، حالات الاشتراك، النتائج، الطلبات، صلاحيات الدروس، تعديل الطالب، رجوع.
-- الحذف: طالب محدد + حذف كل الطلاب، مع تحذير للبيانات المرتبطة.
+- Title: "Students: manage students, their data, and their subscriptions".
+- 3 Info Cards: Total students | Subscribed students | New requests.
+- Search: name / email / phone. Filters: school grade, subscription status.
+- Table: the student, the grade, phone number, courses, subscription status, actions (view details, delete).
+- Pagination: 20 students per page.
+- **Student details page (complete):** name, email, phone, parent phone, grade, governorate, courses, subscription statuses, results, requests, lesson permissions, edit the student, back.
+- Deletion: a specific student + delete all students, with a warning for the related data.
 
-### 11.3 الكورسات والمحتوى
+### 11.3 Courses and content
 
-- العنوان: «الكورسات والمحتوى — إدارة الكورسات والدروس والمواد التعليمية». زر «+ إضافة كورس».
-- بحث «ابحث عن كورس…». فلاتر: الصف الدراسي، حالة الكورس (**منشور / غير منشور**).
-- Card الكورس: صورة، الاسم، الصف، عدد الدروس، عدد الامتحانات، عدد الطلاب المشتركين، الحالة، أزرار (إدارة المحتوى، تعديل، حذف).
-- **داخل إدارة الكورس:** تعديل بيانات الكورس، إضافة امتحان (ينقل لصفحة الامتحانات مع الكورس محدد)، العودة، Units وLessons (إضافة/تعديل/حذف)، ترتيب Units وLessons بـ ↑↓، مواد الدروس، حذف محدد وحذف الكل.
-- لا يوجد: Drag & Drop، Analytics، Video watch tracking، student performance، Comments.
-- عند التنفيذ اقرأ الحالي من `courses.jsx` و`lessons.jsx`.
+- Title: "Courses and content: manage courses, lessons, and educational materials". A "+ Add course" button.
+- Search "Search for a course…". Filters: school grade, course status (**published / unpublished**).
+- Course Card: image, name, grade, number of lessons, number of exams, number of subscribed students, status, buttons (manage content, edit, delete).
+- **Inside course management:** edit the course data, add an exam (takes you to the Exams page with the course preselected), go back, Units and Lessons (add/edit/delete), order Units and Lessons with ↑↓, lesson materials, delete a specific one and delete all.
+- Not included: Drag & Drop, Analytics, Video watch tracking, student performance, Comments.
+- At implementation time, read what is current from `courses.jsx` and `lessons.jsx`.
 
-### 11.4 الامتحانات والأسئلة
+### 11.4 Exams and questions
 
-- العنوان: «الامتحانات والأسئلة — إدارة الامتحانات والأسئلة ومواعيدها ودرجاتها». زر «+ إضافة امتحان».
-- Stats: إجمالي الامتحانات، المنشورة، المنتهية، تحتاج تصحيحًا.
-- بحث باسم الامتحان. فلاتر: الكورس، الصف، حالة النشر (**منشور / غير منشور**).
-- **«قادم» ليس حالة يختارها المستر.** حالة الوقت **تُحسب تلقائيًا** من `startsAt` و`endsAt`: `لم يبدأ / متاح الآن / منتهي`.
-- Card الامتحان: الاسم، الكورس، الصف، عدد الأسئلة، الدرجة النهائية، المدة، البداية، النهاية، الحالة، (إدارة الامتحان، تعديل، حذف). Pagination + حذف الكل.
-- **داخل إدارة الامتحان:** بيانات الامتحان، الأسئلة (جدول: #، نص السؤال، النوع، الدرجة، إجراءات ↑ ↓ تعديل حذف)، «إضافة سؤال»، «استيراد JSON»، **10 أسئلة لكل صفحة** مع Pagination (عشان مفيش Scroll طويل لـ 50 سؤال).
-- **إضافة سؤال:** يدويًا أو استيراد JSON. يدعم الأنواع الحالية فقط: `multiple-choice / true-false / essay`.
-- **استيراد JSON:** رفع ملف أو لصق JSON ← Preview ← Validation ← Import. الأسئلة الخاطئة **لا تُستورد**، ويظهر خطأ واضح (مثال: «يوجد خطأ في السؤال رقم 8: الإجابة الصحيحة غير محددة»).
-- لا يوجد: Copy Exam، Charts، Exam Analytics، Chat، Complex Exam Settings.
+- Title: "Exams and questions: manage exams, questions, their dates, and their scores". A "+ Add exam" button.
+- Stats: total exams, published, ended, need grading.
+- Search by exam name. Filters: course, grade, publish status (**published / unpublished**).
+- **"Upcoming" is not a status the Master chooses.** The time status is **calculated automatically** from `startsAt` and `endsAt`: `Not started / Available now / Ended`.
+- Exam Card: name, course, grade, number of questions, final score, duration, start, end, status, (manage the exam, edit, delete). Pagination + delete all.
+- **Inside exam management:** the exam data, the questions (a table: #, question text, type, score, actions ↑ ↓ edit delete), "Add question", "Import JSON", **10 questions per page** with Pagination (so there is no long Scroll for 50 questions).
+- **Adding a question:** manually or by JSON import. It supports the current types only: `multiple-choice / true-false / essay`.
+- **JSON import:** upload a file or paste JSON ← Preview ← Validation ← Import. Wrong questions are **not imported**, and a clear error appears (example: "There is an error in question number 8: the correct answer is not specified").
+- Not included: Copy Exam, Charts, Exam Analytics, Chat, Complex Exam Settings.
 
-### 11.5 النتائج
+### 11.5 Results
 
-- العنوان: «النتائج — متابعة نتائج الطلاب وتصحيحها». زر «تصدير النتائج».
-- Stats: إجمالي النتائج، تحتاج تصحيحًا، مكتملة التصحيح، نتائج اليوم.
-- بحث باسم الطالب أو الامتحان. فلاتر: الطالب، الكورس، الامتحان، الصف، حالة التصحيح (**تحتاج تصحيحًا / مكتملة التصحيح**).
-- جدول: #، الطالب، الامتحان، الكورس، الدرجة، التاريخ، حالة التصحيح، إجراء (عرض النتيجة / بدء التصحيح).
-- **تفاصيل النتيجة:** بيانات الطالب، الصف، الامتحان، الكورس، التاريخ، الدرجة، النسبة، حالة التصحيح، إجابات الطالب بجانب الإجابة الصحيحة، Pagination للأسئلة، **Manual Grading** للمقالي، «حفظ الدرجة» مع **تحديث تلقائي للدرجة الكلية والنسبة**.
-- الحذف: نتيجة واحدة أو الكل. **لا يُحذف** الطالب ولا الامتحان ولا الأسئلة.
-- لا يوجد: Charts، Ranking، Best/Worst student، Advanced analytics، Student comparison، Chat.
+- Title: "Results: follow up and grade students' results". An "Export results" button.
+- Stats: total results, need grading, grading completed, today's results.
+- Search by student or exam name. Filters: the student, the course, the exam, the grade, grading status (**needs grading / grading completed**).
+- Table: #, the student, the exam, the course, the score, the date, grading status, action (view the result / start grading).
+- **Result details:** the student's data, the grade, the exam, the course, the date, the score, the percentage, grading status, the student's answers beside the correct answer, Pagination for the questions, **Manual Grading** for essays, "Save the score" with an **automatic update of the total score and percentage**.
+- Deletion: a single result or all. The student, the exam, and the questions are **not deleted**.
+- Not included: Charts, Ranking, Best/Worst student, Advanced analytics, Student comparison, Chat.
 
-### 11.6 الاشتراكات وطلبات الاشتراك
+### 11.6 Subscriptions and subscription requests
 
-- صفحة واحدة بـ **تبويبين:** «الاشتراكات» و«طلبات الاشتراك».
-- Stats (3 كروت): الاشتراكات النشطة، المنتهية، تحتاج مراجعة.
-- بحث: اسم الطالب، رقم الطلب، رقم العملية. فلاتر: الصف، الكورس، حالة الطلب.
-- حالات الطلب: **قيد المراجعة / مقبول / مرفوض**. الرفض بدون سبب، والطالب يقدر يقدّم طلبًا جديدًا.
-- **طلبات الاشتراك:** رقم الطلب، الطالب، الكورس، المبلغ، التاريخ، رقم العملية، الحالة. تفاصيل الطلب: بيانات الطالب، بيانات الاشتراك (الكورس، الخطة، المبلغ، تاريخ الطلب، رقم العملية، طريقة الدفع)، وزرّا **«قبول الطلب»** و**«رفض الطلب»**.
-- **عند القبول → يتفعّل الاشتراك تلقائيًا.** لا توجد خطوة ثانية يدوية.
-- **الاشتراكات:** الطالب، الكورس، الخطة، البداية، النهاية، الحالة. الإجراءات: عرض، **تمديد الاشتراك**، **إنهاء الاشتراك**.
-- التمديد: أداة للمستر للتمديد المباشر/الاستثنائي (مثال: 30 يوم). أما الدفع لشهر جديد فيتم بـ **طلب اشتراك جديد**.
-- **لا يوجد:** تعديل حر للاشتراك، ولا حذف اشتراك كإجراء عادي (الاشتراك يُنهى ولا يُحذف).
-- حذف: طلب واحد / كل الطلبات.
+- One page with **two tabs:** "Subscriptions" and "Subscription requests".
+- Stats (3 cards): active subscriptions, ended, need review.
+- Search: student name, request number, transaction number. Filters: the grade, the course, request status.
+- Request statuses: **Under review / Accepted / Rejected**. Rejection with no reason, and the student can submit a new request.
+- **Subscription requests:** request number, the student, the course, the amount, the date, the transaction number, the status. Request details: the student's data, the subscription data (the course, the plan, the amount, the request date, the transaction number, the payment method), and two buttons **"Accept the request"** and **"Reject the request"**.
+- **On acceptance → the subscription is activated automatically.** There is no second manual step.
+- **Subscriptions:** the student, the course, the plan, the start, the end, the status. Actions: view, **extend the subscription**, **end the subscription**.
 
-### 11.7 طلبات شراء الكتب
+- Extension: a tool for the Master for direct/exceptional extension (example: 30 days). Paying for a new month is done through a **new subscription request**.
+- **Not included:** free editing of a subscription, nor deleting a subscription as a normal action (a subscription is ended, not deleted).
+- Deletion: one request / all requests.
 
-- العنوان: «طلبات شراء الكتب — مراجعة طلبات شراء الكتب الخاصة بالطلاب».
-- Stats: إجمالي الطلبات، تحتاج مراجعة، الطلبات المقبولة.
-- **البحث (3 عناصر فقط):** اسم الطالب، رقم الطلب، رقم التحويل. فلاتر: الصف، الكتاب، حالة الطلب (**قيد المراجعة / مقبول / مرفوض**).
-- جدول: رقم الطلب، الطالب، الكتاب، رقم التحويل، المبلغ، تاريخ الطلب، إجراء.
-- تفاصيل الطلب: بيانات الطالب، بيانات الكتاب، بيانات الدفع (طريقة الدفع، رقم التحويل، المبلغ، التاريخ)، الحالة، زرّا **«قبول الطلب»** و**«رفض الطلب»**.
-- **عند القبول → الكتاب يتسجل كمشترى للطالب** (جدول ملكية منفصل `bookPurchases`).
-- حذف: طلب واحد / الكل. **حذف الطلب المقبول لا يلغي حق الطالب في الكتاب.**
-- لا يوجد: سبب رفض، إثبات دفع كصورة.
+### 11.7 Book purchase requests
 
-### 11.8 الكتب والمذكرات
+- Title: "Book purchase requests: review the students' book purchase requests".
+- Stats: total requests, need review, accepted requests.
+- **Search (only 3 items):** student name, request number, transfer number. Filters: the grade, the book, request status (**under review / accepted / rejected**).
+- Table: request number, the student, the book, transfer number, the amount, request date, action.
+- Request details: the student's data, the book's data, payment data (payment method, transfer number, amount, date), the status, and two buttons **"Accept the request"** and **"Reject the request"**.
+- **On acceptance → the book is recorded as purchased for the student** (a separate ownership table `bookPurchases`).
+- Deletion: one request / all. **Deleting the accepted request does not cancel the student's right to the book.**
+- Not included: a rejection reason, payment proof as an image.
 
-- العنوان: «الكتب والمذكرات — إدارة الكتب والمذكرات المتاحة للطلاب».
-- الأزرار: «+ إضافة كتاب» و«طلبات شراء الكتب».
-- Stats: إجمالي الكتب، متاحة للشراء، غير متاحة للشراء.
-- بحث: اسم الكتاب أو رقمه. فلاتر: الصف، حالة الكتاب.
-- Card: صورة الغلاف، الاسم، الرقم، الصف، السعر، **عدد المشترين**، الحالة، (إدارة الكتاب، عرض الكتاب، تعديل، حذف).
-- عرض طلبات شراء الكتاب ده، وعدد المشترين.
-- **Preview** للكتاب كما يظهر للطالب: مجرد Modal، مش صفحة جديدة.
+### 11.8 Books and handouts
 
-### 11.9 صلاحيات الدروس
+- Title: "Books and handouts: manage the books and handouts available to students".
+- Buttons: "+ Add book" and "Book purchase requests".
+- Stats: total books, available for purchase, unavailable for purchase.
+- Search: the book's name or number. Filters: the grade, the book's status.
+- Card: cover image, name, number, grade, price, **number of buyers**, status, (manage the book, view the book, edit, delete).
+- Show this book's purchase requests, and the number of buyers.
+- **Preview** of the book as it appears to the student: just a Modal, not a new page.
 
-- العنوان: «صلاحيات الدروس — إدارة صلاحيات الطلاب للوصول إلى دروس محددة».
-- Stats: إجمالي الصلاحيات، الطلاب أصحاب صلاحيات خاصة.
-- بحث: اسم الطالب، اسم الدرس. فلاتر: الكورس، الصف.
-- جدول: الطالب، الكورس، الدرس، تاريخ المنح، الإجراءات (عرض، سحب).
-- **إضافة صلاحية:** اختر الطالب ← الكورس ← درسًا أو عدة دروس. النظام يمنع Duplicate.
-- تُبنى فوق `lessonAccess.jsx` و`lessonAccessService.jsx` الموجودين، بدون اختراع نظام جديد.
+### 11.9 Lesson permissions
 
-### 11.10 الإعدادات
+- Title: "Lesson permissions: manage students' permissions to access specific lessons".
+- Stats: total permissions, students with special permissions.
+- Search: student name, lesson name. Filters: the course, the grade.
+- Table: the student, the course, the lesson, grant date, actions (view, revoke).
+- **Adding a permission:** choose the student ← the course ← one lesson or several lessons. The system prevents Duplicates.
+- Built on top of the existing `lessonAccess.jsx` and `lessonAccessService.jsx`, without inventing a new system.
 
-- العنوان: «الإعدادات — إدارة الحساب والدفع والبيانات».
-- **حساب المستر:** الاسم، البريد، الهاتف، [تعديل البيانات]، [تغيير كلمة المرور]. (اتحذف: آخر تسجيل دخول.)
-- **بيانات Vodafone Cash فقط:** رقم التحويل، رقم الدعم، [تعديل بيانات الدفع]. مفيش «إضافة طريقة دفع».
-- **Telegram:** قسم بسيط «وسيلة التواصل مع الطلاب» + [فتح Telegram]. مش Chat Center.
-- **Data Management:** «حذف جميع المحادثات» مع Warning قوي. **يُحذف:** المحادثات، الرسائل، المرفقات. **لا يُحذف:** الطلاب، الكورسات، الامتحانات، النتائج، الاشتراكات، الكتب.
-- اتحذف نهائيًا: Dark/Light switch، Multi-language، Teacher management، Roles system، Analytics، Payment gateway معقد، Complex school settings.
+### 11.10 Settings
+
+- Title: "Settings: manage the account, payment, and data".
+- **The Master's account:** name, email, phone, [Edit data], [Change password]. (Removed: last login.)
+- **Vodafone Cash data only:** transfer number, support number, [Edit payment data]. There is no "Add a payment method".
+- **Telegram:** a simple section "Means of communication with students" + [Open Telegram]. Not a Chat Center.
+- **Data Management:** "Delete all chats" with a strong Warning. **Deleted:** the chats, the messages, the attachments. **Not deleted:** students, courses, exams, results, subscriptions, books.
+- Permanently removed: Dark/Light switch, Multi-language, Teacher management, Roles system, Analytics, a complex Payment gateway, Complex school settings.
 
 ---
 
-### 11.11 الصفحات والمسارات المنفذة فعليًا
+### 11.11 The pages and routes actually implemented
 
-| الصفحة | المسارات |
+| Page | Routes |
 |---|---|
-| الكورسات | `/courses` (كروت) · `/courses/new` · `/courses/:id` (إدارة الوحدات والدروس) · `/courses/:id/edit` |
-| الامتحانات | `/exams` · `/exams/new` · `/exams/:id` (الأسئلة + استيراد JSON) · `/exams/:id/edit` |
-| النتائج | `/results` (يقبل `?examId=` و`?status=needs_review`) · `/results/:id` (التصحيح) |
-| الاشتراكات | `/subscriptions` (تبويبان) |
-| طلبات الكتب | `/book-requests` |
-| الكتب | `/books` · `/books/new` · `/books/:id/edit` |
-| صلاحيات الدروس | `/lesson-access` |
-| الإعدادات | `/settings` |
+| Courses | `/courses` (cards) · `/courses/new` · `/courses/:id` (manage units and lessons) · `/courses/:id/edit` |
+| Exams | `/exams` · `/exams/new` · `/exams/:id` (questions + JSON import) · `/exams/:id/edit` |
+| Results | `/results` (accepts `?examId=` and `?status=needs_review`) · `/results/:id` (grading) |
+| Subscriptions | `/subscriptions` (two tabs) |
+| Book requests | `/book-requests` |
+| Books | `/books` · `/books/new` · `/books/:id/edit` |
+| Lesson permissions | `/lesson-access` |
+| Settings | `/settings` |
 
-(كلها تحت `/dashboard-master`.)
+(All under `/dashboard-master`.)
 
-**ملاحظات تنفيذ:**
+**Implementation notes:**
 
-- **بند «التصحيح المطلوب» (القديم «3 محاولات»):** اتحسم: معناه **عدد الطلاب اللي سلّموا الامتحان ومحتاجين تصحيح من المستر**، بيظهر على كارت الامتحان ويفتح النتائج مفلترة. والامتحان مرة واحدة فقط.
-- **تصحيح المقالي:** الدرجة النهائية = الأسئلة التلقائية + المقالي، ودرجة كل سؤال مقالي محفوظة منفصلة (`essayScores`).
-- **حذف كورس:** يعرض ملخصًا بالأعداد (وحدات، دروس، امتحانات، أسئلة، نتائج، اشتراكات منها نشط، طلبات، صلاحيات) ويحذف المرتبط به. **الطلاب ما بيتحذفوش.**
-- **الإعدادات:** عداد المساحة (Supabase / Cloudinary / Drive) أرقام **تجريبية** حاليًا وعليها بادج «بيانات تجريبية». وتغيير كلمة المرور تجريبي (تحقق من المدخلات فقط).
-- **الصور في Mock:** رفع الصورة بيتحول لـ data URL مؤقت.
+- **The "Grading required" item (formerly "3 attempts"):** settled: it means **the number of students who submitted the exam and need grading from the Master**, it appears on the exam card and opens the results filtered. And the exam is once only.
+- **Grading essays:** the final score = the auto-graded questions + the essays, and the score of each essay question is saved separately (`essayScores`).
+- **Deleting a course:** shows a summary with the counts (units, lessons, exams, questions, results, subscriptions of which active, requests, permissions) and deletes what is related to it. **The students are not deleted.**
+- **Settings:** the storage meter (Supabase / Cloudinary / Drive) shows **sample** numbers for now and has a "Sample data" badge. And changing the password is a sample (input validation only).
+- **Images in the Mock:** the image upload is turned into a temporary data URL.
 
 ---
 
-## 12. قرارات نهائية وأفكار مُلغاة (لا تقترحها مرة ثانية)
+## 12. Final decisions and canceled ideas (do not suggest them again)
 
-| الفكرة | القرار |
+| Idea | Decision |
 |---|---|
-| Analytics / Charts / Ranking / Success Rate / Revenue / Course analytics | **ملغي.** المستر يريد Dashboard تشغيلية مش BI |
-| Teacher Chat / Message Center / Chat Inbox في لوحة المستر | **ملغي.** التواصل عبر Telegram |
-| Multi-Teacher / Roles / Permission matrix | **ملغي.** Master واحد فقط (الدور admin/student في الـ Backend بس) |
-| **رفض طلب الاشتراك أو طلب الكتاب** | **رجع (قرار 3 أكتوبر 2026):** حالات الطلب: قيد المراجعة / مقبول / مرفوض. **بدون سبب رفض.** والطالب يقدر يقدّم طلب جديد بعد الرفض |
-| سبب الرفض | **ملغي** (رفض وخلاص) |
-| Academic Year للكتب | **ملغي** |
-| صورة إثبات الدفع | **ملغي** (رقم التحويل + المبلغ يكفي) |
-| Reference إضافي ثالث | **ملغي** |
-| Copy Exam | **ملغي** |
-| حالة امتحان «قادم» يدوية | **ملغي** (تُحسب تلقائيًا من التواريخ) |
-| Drag & Drop للـ Units / Lessons / Questions | **ملغي**، البديل أزرار ↑ ↓ |
-| تعديل حر للاشتراك | **ملغي**، البديل: إنهاء + تمديد |
-| E-commerce كامل (Cart, Inventory, Shipping, Coupons…) | **ملغي** |
-| اشتراك بالحصة (Per-Lesson Subscription) | **ملغي**، البديل: صلاحية درس خاصة |
-| مدة على صلاحية الدرس | **ملغي** (تستمر حتى السحب) |
-| Payment Gateway / إضافة طرق دفع من الـ Dashboard | **ملغي** |
-| **نظام Activation Codes للدفع** | **ملغي.** اتبدل بنظام الطلبات (Vodafone Cash + رقم عملية + قبول/رفض المستر) |
-| Dark/Light switch / Multi-language | **ملغي** |
-| إعادة الامتحان | **ممنوع.** مرة واحدة فقط لكل طالب |
-| الشات في Supabase | **ملغي.** الشات هيتربط بـ Firebase لاحقًا. ما يتنفذش له جداول أو سياسات في Supabase |
-| تخزين الصور في Supabase | **ملغي.** الصور على Cloudinary (+ ضغط في المتصفح)، والملازم على Google Drive، والفيديو YouTube Unlisted |
+| Analytics / Charts / Ranking / Success Rate / Revenue / Course analytics | **Canceled.** The Master wants an operational Dashboard, not BI |
+| Teacher Chat / Message Center / Chat Inbox in the Master dashboard | **Canceled.** Communication is through Telegram |
+| Multi-Teacher / Roles / Permission matrix | **Canceled.** One Master only (the admin/student role exists in the Backend only) |
+| **Rejecting a subscription request or a book request** | **Back (decision of October 3, 2026):** request statuses: under review / accepted / rejected. **With no rejection reason.** And the student can submit a new request after the rejection |
+| Rejection reason | **Canceled** (just a rejection) |
+| Academic Year for books | **Canceled** |
+| Payment proof image | **Canceled** (the transfer number + the amount is enough) |
+| An additional third Reference | **Canceled** |
+| Copy Exam | **Canceled** |
+| A manual "upcoming" exam status | **Canceled** (calculated automatically from the dates) |
+| Drag & Drop for Units / Lessons / Questions | **Canceled**, the alternative is ↑ ↓ buttons |
+| Free editing of a subscription | **Canceled**, the alternative: end + extend |
+| Full E-commerce (Cart, Inventory, Shipping, Coupons…) | **Canceled** |
+| Per-session subscription (Per-Lesson Subscription) | **Canceled**, the alternative: a special lesson permission |
+| A duration on the lesson permission | **Canceled** (it continues until revoked) |
+| Payment Gateway / adding payment methods from the Dashboard | **Canceled** |
+| **The Activation Codes system for payment** | **Canceled.** Replaced by the requests system (Vodafone Cash + transaction number + the Master's accept/reject) |
+| Dark/Light switch / Multi-language | **Canceled** |
+| Retaking the exam | **Forbidden.** Only once per student |
+| The chat in Supabase | **Canceled.** The chat will be connected to Firebase later. No tables or policies are to be implemented for it in Supabase |
+| Storing images in Supabase | **Canceled.** Images are on Cloudinary (+ compression in the browser), handouts on Google Drive, and video on YouTube Unlisted |
 
 ---
 
-## 13. التنظيف والتغييرات اللي اتعملت (وإيه اللي لسه)
+## 13. Cleanup and the changes that were made (and what is still left)
 
-**اتعمل:**
+**Done:**
 
-- `rejected`: رجع كحالة رسمية (بدون سبب). واجهة الطالب فيها «إعادة طلب الشراء» وده **مقصود**.
-- بادئة طلبات الكتب `BK-` بدل `MK-`.
-- `availability` للكتب اتطبقت في واجهة الطالب وفي لوحة المستر.
-- حقول الـ Mock الناقصة اتضافت: `published` للكورس والامتحان، `availability` للكتاب، `planId/startsAt/endsAt/sourceRequestId` للاشتراك، `answers/essayScores/status/autoScore` للنتيجة، `videoUrl/materialUrl` للدرس.
-- ملكية الكتب في `bookPurchases` منفصلة عن الطلبات.
-- روابط الفيديو والملزمة التجريبية انتقلت من `LessonPage` لبيانات الدرس.
+- `rejected`: came back as an official status (with no reason). The student interface has "Re-request purchase" and this is **intentional**.
+- The book requests prefix is `BK-` instead of `MK-`.
+- `availability` for books was applied in the student interface and in the Master dashboard.
+- The missing Mock fields were added: `published` for the course and the exam, `availability` for the book, `planId/startsAt/endsAt/sourceRequestId` for the subscription, `answers/essayScores/status/autoScore` for the result, `videoUrl/materialUrl` for the lesson.
+- Book ownership is in `bookPurchases`, separate from the requests.
+- The sample video and handout links moved from `LessonPage` to the lesson data.
 
-**لسه (يتعمل وقت الربط بالـ Backend):**
+**Still left (to be done at Backend connection time):**
 
-1. شيل فرع `accessType: "lesson"` من `subscriptionService.jsx` (اشتراك الحصة ملغي).
-2. `Login` و`Signup` لسه مش بيعملوا دخول/إنشاء حساب فعلي (ينتظروا `authService`).
-3. تصحيح الامتحان لسه في المتصفح (`ExamInterface`)، والإجابات الصحيحة بتوصل للطالب: يتحول لـ RPC (القسم 16).
-4. `ExamInterface`/`ExamResult` بيستخدموا `sessionStorage` لحفظ المحاولة: يتشال.
-5. حماية `/dashboard-master` وكل المسارات.
-6. `src/App.css` ملف فاضي ومش مستخدم (ممكن يتمسح).
-7. أخطاء الـ lint القديمة في 0 ملفات (قبل مشروع المستر).
-
----
-
-## 14. طريقة العمل مع المستخدم (مهم)
-
-- **اللغة:** عربي بأسلوب مصري بسيط ومباشر. الشرح عملي بدون مصطلحات معقدة. الكود والـ comments بالإنجليزية أو زي ما المشروع ماشي.
-- **Feature by Feature / Page by Page.** لا تقفز بين الملفات ولا تضيف حاجات من غير حاجة.
-- **اتفق على شكل ووظيفة الصفحة أولًا، وبعدها اكتب الكود.**
-- **اقرأ الملفات الحالية قبل أي كود مرتبط بـ data.** ممنوع الاعتماد على نسخة قديمة من الذاكرة أو على أمثلة مكتوبة في هذا الـ README.
-- ما تفترضش شكل الـ data. لو محتاج حقل جديد قول ده للمستخدم.
-- لو محتاج توضيح، **اسأل** بدل ما تفترض.
-- ما تبدأش كتابة أي كود قبل ما تلخص فهمك وتاخد تأكيد.
-- عند تسليم كود: اذكر اسم الملف ومساره بالضبط، وإن كان ملف جديد أو تعديل، واكتب الملف **كامل** جاهز للاستبدال.
-- لا تقل «اتحقق» إلا لو `npm run build` و`npm run lint` اتشغّلوا فعلًا.
-- **ممنوع** أي مفتاح سري في الكود أو في الشات.
+1. Remove the `accessType: "lesson"` branch from `subscriptionService.jsx` (per-session subscription is canceled).
+2. `Login` and `Signup` still do not actually log in / create an account (they wait for `authService`).
+3. Exam grading is still in the browser (`ExamInterface`), and the correct answers reach the student: it turns into an RPC (Section 16).
+4. `ExamInterface`/`ExamResult` use `sessionStorage` to save the attempt: to be removed.
+5. Protecting `/dashboard-master` and all routes.
+6. `src/App.css` is an empty, unused file (it can be deleted).
+7. The old lint errors: fixed. 0 files with lint errors now.
 
 ---
 
-## 15. الخطوة الجاية
+## 14. How to work with the user (important)
+
+- **Language:** Arabic in a simple, direct Egyptian style. The explanation is practical without complicated terms. Code and comments in English or as the project goes.
+- **Feature by Feature / Page by Page.** Do not jump between files and do not add things without need.
+- **First agree on the form and function of the page, and then write the code.**
+- **Read the existing files before any code related to data.** Relying on an old copy from memory or on examples written in this README is forbidden.
+- Do not assume the shape of the data. If you need a new field, tell the user.
+- If you need clarification, **ask** instead of assuming.
+- Do not start writing any code before you summarize your understanding and get confirmation.
+- When delivering code: state the file name and its exact path, whether it is a new file or an edit, and write the file **in full**, ready to replace.
+- Do not say "verified" unless `npm run build` and `npm run lint` were actually run.
+- **Forbidden:** any secret key in the code or in the chat.
+
+---
+
+## 15. The next step
 
 ```text
-الواجهة (Frontend) كاملة على Mock Data  ←  مكتملة
-الربط بـ Supabase + Cloudinary           ←  الخطوة الجاية: نفّذ القسم 16 مرحلة مرحلة
+The Frontend is complete on Mock Data     ←  complete
+Connecting to Supabase + Cloudinary       ←  the next step: implement Section 16 phase by phase
 ```
 
-التنفيذ بيتم بالبرومت `BACKEND_BUILD_PROMPT.md` على مشروع Supabase **تجريبي (dev)**، ومرحلة مرحلة مع موافقة المستخدم بعد كل واحدة.
+Execution is done with the prompt `BACKEND_BUILD_PROMPT.md` on a **test (dev)** Supabase project, phase by phase with the user's approval after each one.
 
 ---
 
-## 16. خطة الـ Backend (Supabase + Cloudinary) — التصميم المعتمد
+## 16. The Backend plan (Supabase + Cloudinary): the approved design
 
-> منقولة حرفيًا من `BACKEND_PLAN.md`. هي المرجع لتصميم الـ Backend.
+> Transferred verbatim from `BACKEND_PLAN.md`. It is the reference for the Backend design.
 
-مبنية على قراءة الكود الفعلي (الـ services والداتا وصفحات الطالب والمستر)، ومقارنتها بصورة «قواعد الأمان». الكود هو المرجع لما يختلف عن الصورة.
+Based on reading the actual code (the services, the data, and the student and Master pages), and comparing it with the "security rules" image. The code is the reference wherever it differs from the image.
 
-### 16.1 تعارض الصورة مع الكود (والقرار)
+### 16.1 Conflicts between the image and the code (and the decision)
 
-| في الصورة | في الكود | القرار |
+| In the image | In the code | Decision |
 |---|---|---|
-| جدول Activation Codes للدفع (`is_used`) | نظام **طلبات**: الطالب يحوّل فودافون كاش ويكتب رقم العملية، والمستر يقبل أو يرفض | **الكود هو الصحيح.** مفيش جدول Activation Codes. بدله جدولا طلبات (اشتراك + كتب) |
-| Cloudinary للصور | حقل `image` نص رابط | **موافق.** + ضغط الصورة في المتصفح قبل الرفع |
-| Google Drive للملازم | حقل `materialUrl` | **موافق** |
-| YouTube Unlisted محمي | حقل `videoUrl` | **موافق** مع حماية من السيرفر (قسم 8) |
-| تحقق الاشتراك في الـ State فقط | — | **مش كفاية.** التحقق لازم يتم في السيرفر (RLS + دوال) |
+| An Activation Codes table for payment (`is_used`) | A **requests** system: the student transfers via Vodafone Cash and enters the transaction number, and the Master accepts or rejects | **The code is correct.** There is no Activation Codes table. Instead, two request tables (subscription + books) |
+| Cloudinary for images | An `image` field holding a link as text | **Agreed.** + compress the image in the browser before uploading |
+| Google Drive for handouts | A `materialUrl` field | **Agreed** |
+| Protected YouTube Unlisted | A `videoUrl` field | **Agreed**, with protection from the server (Section 8) |
+| Subscription check in the State only | — | **Not enough.** The check must happen on the server (RLS + functions) |
 
-### 16.2 كل خدمة بتخزن إيه
+### 16.2 What each service stores
 
-| الخدمة | تخزن إيه | ملاحظة |
+| Service | What it stores | Note |
 |---|---|---|
-| **Supabase** (Postgres + Auth + Edge Functions) | كل النصوص والحسابات والامتحانات والدرجات والطلبات والروابط | مفيش صور ولا ملفات فيه |
-| **Firebase** (لاحقًا، منفصل) | الشات فقط | خارج نطاق هذه الخطة |
-| **Cloudinary** | صور الكورسات وأغلفة الكتب | في الجدول بس الرابط + `public_id` |
-| **Google Drive** | ملازم PDF | في الجدول بس الرابط |
-| **YouTube Unlisted** | الفيديوهات | في الجدول بس الرابط |
+| **Supabase** (Postgres + Auth + Edge Functions) | All texts, accounts, exams, scores, requests, and links | No images or files in it |
+| **Firebase** (later, separate) | The chat only | Outside the scope of this plan |
+| **Cloudinary** | Course images and book covers | In the table only the link + `public_id` |
+| **Google Drive** | PDF handouts | In the table only the link |
+| **YouTube Unlisted** | The videos | In the table only the link |
 
-### 16.3 الجداول (20 جدول)
+### 16.3 The tables (20 tables)
 
-كل الأسعار `numeric`، والتواريخ `timestamptz`، والمفاتيح الأساسية `uuid` (إلا الجداول المرجعية الصغيرة).
+All prices are `numeric`, dates are `timestamptz`, and primary keys are `uuid` (except the small reference tables).
 
-#### أ) مرجعية وإعدادات
-1. **grades**: `id text PK`, `label`, `stage`, `sort_order`. (6 صفوف ثابتة)
+#### a) Reference and settings
+1. **grades**: `id text PK`, `label`, `stage`, `sort_order`. (6 fixed rows)
 2. **profiles**: `id uuid PK → auth.users ON DELETE CASCADE`, `role` ('student'|'admin') default 'student', `name`, `email` unique, `phone` unique, `guardian_phone`, `grade_id → grades`, `governorate`, `created_at`.
-3. **app_settings**: `key text PK`, `value jsonb`. المفاتيح: `telegram_url`, `master_display_name`.
+3. **app_settings**: `key text PK`, `value jsonb`. Keys: `telegram_url`, `master_display_name`.
 4. **payment_methods**: `id text PK`, `name`, `account_number`, `support_whatsapp`, `is_active`.
 
-#### ب) المحتوى
+#### b) Content
 5. **courses**: `id`, `slug` unique, `title`, `description`, `grade_id`, `duration_label`, `image_url`, `image_public_id`, `published` default false, `created_at`.
-6. **course_plans**: `id`, `course_id → courses CASCADE`, `plan_key` ('monthly'|'term'), `name`, `price`, `currency` default 'EGP'. فريد على (course_id, plan_key).
+6. **course_plans**: `id`, `course_id → courses CASCADE`, `plan_key` ('monthly'|'term'), `name`, `price`, `currency` default 'EGP'. Unique on (course_id, plan_key).
 7. **units**: `id`, `course_id CASCADE`, `title`, `position`.
 8. **lessons**: `id`, `unit_id CASCADE`, `title`, `duration_label`, `description`, `position`.
-9. **lesson_media** (محمي): `lesson_id PK → lessons CASCADE`, `video_url`, `material_url`, `material_title`.
+9. **lesson_media** (protected): `lesson_id PK → lessons CASCADE`, `video_url`, `material_url`, `material_title`.
 
-#### ج) الامتحانات
+#### c) Exams
 10. **exams**: `id`, `course_id CASCADE`, `unit_id → units SET NULL`, `title`, `duration_minutes`, `starts_at`, `ends_at`, `published`, `created_at`.
 11. **questions**: `id`, `exam_id CASCADE`, `position`, `type` ('multiple-choice'|'true-false'|'essay'), `body`, `options jsonb`, `score`.
-12. **question_answers** (للمستر فقط): `question_id PK → questions CASCADE`, `correct_answer jsonb`.
-13. **exam_attempts**: `id`, `exam_id CASCADE`, `student_id → profiles CASCADE`, `auto_score`, `auto_total`, `score`, `total`, `essay_total`, `correct_count`, `incorrect_count`, `status` ('graded'|'needs_review'), `submitted_at`, `graded_at`. **فريد على (exam_id, student_id)** = مرة واحدة فقط.
-14. **attempt_answers**: `attempt_id CASCADE`, `question_id CASCADE`, `answer jsonb`, `awarded_score` (null للمقالي قبل التصحيح). PK على الاتنين.
+12. **question_answers** (Master only): `question_id PK → questions CASCADE`, `correct_answer jsonb`.
+13. **exam_attempts**: `id`, `exam_id CASCADE`, `student_id → profiles CASCADE`, `auto_score`, `auto_total`, `score`, `total`, `essay_total`, `correct_count`, `incorrect_count`, `status` ('graded'|'needs_review'), `submitted_at`, `graded_at`. **Unique on (exam_id, student_id)** = once only.
+14. **attempt_answers**: `attempt_id CASCADE`, `question_id CASCADE`, `answer jsonb`, `awarded_score` (null for essays before grading). PK on both.
 
-#### د) الاشتراكات والصلاحيات
-15. **enrollments**: `id`, `student_id CASCADE`, `course_id CASCADE`, `plan_key`, `status` ('active'|'ended'), `starts_at`, `ends_at`, `ended_at`, `source_request_id → subscription_requests SET NULL`. اشتراك نشط واحد فقط لكل (طالب، كورس) بـ partial unique index. و«منتهي» بيتحسب من `ends_at` مش بيتخزن.
-16. **subscription_requests**: `id`, `reference_number` unique (default `MK-` + عشوائي)، `student_id CASCADE`, `course_id CASCADE`, `plan_key`, `amount`, `transaction_id` unique, `payment_method_id`, `status` ('pending'|'approved'|'rejected') default pending, `created_at`, `reviewed_at`. طلب pending واحد لكل (طالب، كورس).
-17. **lesson_access**: `id`, `student_id CASCADE`, `course_id CASCADE`, `lesson_id CASCADE`, `created_at`. فريد على (student_id, lesson_id). السحب = حذف الصف.
+#### d) Subscriptions and permissions
+15. **enrollments**: `id`, `student_id CASCADE`, `course_id CASCADE`, `plan_key`, `status` ('active'|'ended'), `starts_at`, `ends_at`, `ended_at`, `source_request_id → subscription_requests SET NULL`. Only one active subscription per (student, course) via a partial unique index. And "ended" is calculated from `ends_at`, not stored.
+16. **subscription_requests**: `id`, `reference_number` unique (default `MK-` + random), `student_id CASCADE`, `course_id CASCADE`, `plan_key`, `amount`, `transaction_id` unique, `payment_method_id`, `status` ('pending'|'approved'|'rejected') default pending, `created_at`, `reviewed_at`. One pending request per (student, course).
+17. **lesson_access**: `id`, `student_id CASCADE`, `course_id CASCADE`, `lesson_id CASCADE`, `created_at`. Unique on (student_id, lesson_id). Revoking = deleting the row.
 
-#### هـ) الكتب
+#### e) Books
 18. **books**: `id`, `title`, `description`, `grade_id`, `category`, `price`, `image_url`, `image_public_id`, `availability` ('available'|'unavailable'), `created_at`.
-19. **book_purchase_requests**: زي طلبات الاشتراك، بـ `book_id` و`reference_number` بادئته `BK-`.
-20. **book_purchases** (سجل الملكية): `id`, `student_id CASCADE`, `book_id CASCADE`, `request_id → book_purchase_requests SET NULL`, `purchased_at`. فريد على (student_id, book_id). **حذف الطلب ما بيمسحش الملكية.**
+19. **book_purchase_requests**: like the subscription requests, with `book_id` and a `reference_number` prefixed `BK-`.
+20. **book_purchases** (ownership record): `id`, `student_id CASCADE`, `book_id CASCADE`, `request_id → book_purchase_requests SET NULL`, `purchased_at`. Unique on (student_id, book_id). **Deleting the request does not delete the ownership.**
 
-#### و) المحادثة: خارج النطاق
-الشات **مش جزء من Supabase**. هيتربط بخدمة منفصلة (Firebase) لاحقًا. فمفيش جدول ولا RLS ولا دوال للشات هنا، و`chatService.jsx` وأي شيء متعلق بالمحادثات **يفضل على الـ Mock ولا يتلمس**. (زر «حذف كل المحادثات» في الإعدادات بيفضل متوصل بـ `chatService` وقت ربط الشات.)
+#### f) Chat: out of scope
+The chat is **not part of Supabase**. It will be connected to a separate service (Firebase) later. So there is no table, no RLS, and no functions for the chat here, and `chatService.jsx` and anything related to chats **stays on the Mock and is not touched**. (The "Delete all chats" button in Settings stays connected to `chatService` until the chat is connected.)
 
-**ملاحظات:**
-- رقم عملية التحويل (`transaction_id`) لازم يبقى فريد **عبر الجدولين** (اشتراك وكتب)، فيتعمل trigger يفحص الجدول التاني.
-- مفيش جدول للنشاطات: آخر النشاطات في رئيسية المستر بتتحسب من النتائج والطلبات.
-- شلت `access_type` و`lesson_id` من طلبات الاشتراك: القرار إن مفيش اشتراك مدفوع بالحصة (الدرس الفردي بصلاحية من المستر).
+**Notes:**
+- The transfer transaction number (`transaction_id`) must be unique **across both tables** (subscriptions and books), so a trigger is created that checks the other table.
+- There is no table for activities: the latest activities on the Master home are calculated from the results and the requests.
+- I removed `access_type` and `lesson_id` from the subscription requests: the decision is that there is no paid per-session subscription (the individual lesson is by a permission from the Master).
 
-### 16.4 الحذف المتسلسل (ON DELETE CASCADE)
+### 16.4 Cascading delete (ON DELETE CASCADE)
 
-- حذف **كورس** ← وحداته ودروسه (والـ media) وامتحاناته وأسئلته وإجاباتها ومحاولاته وإجابات الطلاب واشتراكاته وطلباته وصلاحياته.
-- حذف **امتحان** ← أسئلته ومحاولاته.
-- حذف **كتاب** ← طلباته وسجل ملكيته.
-- حذف **طالب** ← مسح حسابه في Auth (Edge Function بصلاحية service role) ← يمسح الـ profile ← يمسح كل بياناته.
-- حذف **وحدة** ← دروسها. والامتحانات المرتبطة بيها `unit_id` يبقى null («مراجعة عامة»).
-- حذف **طلب مقبول** ← لا يمس `enrollments` ولا `book_purchases`.
-- أزرار «حذف الكل» في لوحة المستر ← دوال RPC للمستر فقط.
+- Deleting a **course** ← its units and lessons (and the media), its exams, their questions and their answers, its attempts, the students' answers, its subscriptions, its requests, and its permissions.
+- Deleting an **exam** ← its questions and its attempts.
+- Deleting a **book** ← its requests and its ownership record.
+- Deleting a **student** ← deleting their account in Auth (an Edge Function with service role permission) ← deletes the profile ← deletes all their data.
+- Deleting a **unit** ← its lessons. And the exams linked to it get `unit_id` set to null ("general review").
+- Deleting an **accepted request** ← does not touch `enrollments` or `book_purchases`.
+- The "Delete all" buttons in the Master dashboard ← RPC functions for the Master only.
 
-### 16.5 الصلاحيات (RLS)
+### 16.5 Permissions (RLS)
 
-الكل مفعّل عليه RLS. دالة مساعدة `is_admin()` (security definer) تفحص `profiles.role`.
+RLS is enabled on all of them. A helper function `is_admin()` (security definer) checks `profiles.role`.
 
-| الجدول | الزائر | الطالب | المستر |
+| Table | Visitor | Student | Master |
 |---|---|---|---|
-| grades، app_settings (العام)، payment_methods (النشطة) | قراءة | قراءة | كامل |
-| courses (المنشور)، course_plans، units، lessons، books | قراءة | قراءة | كامل |
-| lesson_media | لا | عبر دالة فقط | كامل |
-| exams | لا | المنشور في كورساته | كامل |
-| questions | لا | عبر دالة فقط (بدون إجابات) | كامل |
-| question_answers | لا | **لا** | كامل |
-| exam_attempts، attempt_answers | لا | تقرأ بتاعتها فقط | كامل |
-| enrollments، lesson_access، book_purchases | لا | بتاعتها (قراءة) | كامل |
-| subscription_requests، book_purchase_requests | لا | تنشئ وتقرأ بتاعتها | كامل |
-| profiles | لا | بياناتها (من غير تغيير `role`) | كامل |
+| grades, app_settings (public), payment_methods (active) | Read | Read | Full |
+| courses (published), course_plans, units, lessons, books | Read | Read | Full |
+| lesson_media | No | Via function only | Full |
+| exams | No | The published ones in their courses | Full |
+| questions | No | Via function only (without answers) | Full |
+| question_answers | No | **No** | Full |
+| exam_attempts, attempt_answers | No | Reads their own only | Full |
+| enrollments, lesson_access, book_purchases | No | Their own (read) | Full |
+| subscription_requests, book_purchase_requests | No | Creates and reads their own | Full |
+| profiles | No | Their own data (without changing `role`) | Full |
 
-أمان إضافي: `profiles.role` ما ينفعش الطالب يعدله (trigger أو column privileges).
+Extra security: the student must not be able to modify `profiles.role` (trigger or column privileges).
 
-### 16.6 الدوال على السيرفر (RPC) و Edge Functions
+### 16.6 Server functions (RPC) and Edge Functions
 
 **RPC (Postgres):**
-- `get_exam_questions(exam_id)`: بترجع الأسئلة **بدون إجابات صحيحة**، بشرط: الطالب مشترك، الامتحان منشور وفي وقته، ولم يسلّم قبل كده.
-- `submit_exam(exam_id, answers)`: بتصحح الأسئلة التلقائية على السيرفر، وبتسجل المحاولة (مرة واحدة)، وحالتها `needs_review` لو فيه مقالي.
-- `grade_essays(attempt_id, scores)`: للمستر. تحدّث الدرجات لكل سؤال، وتعيد حساب الدرجة النهائية (تلقائي + مقالي)، وتقفل الحالة `graded` لما كل المقالي يتصحح.
-- `get_lesson_media(lesson_id)`: بترجع الفيديو والملزمة لو الطالب مشترك أو عنده صلاحية للدرس.
-- `create_subscription_request(...)` و`create_book_request(...)`: **المبلغ بيتحسب من السيرفر** (من `course_plans` أو `books.price`)، مش من المتصفح.
-- `approve_subscription_request(id)`: (للمستر) تنشئ الاشتراك من تاريخ اليوم (شهري +1 شهر، ترم +4 أشهر حسب الثابت الحالي)، وتحدّث الطلب في عملية واحدة. و`reject_...`.
-- `approve_book_request(id)`: تسجّل الملكية وتحدّث الطلب. و`reject_...`.
-- `extend_enrollment(id, days)` و`end_enrollment(id)` و`grant_lesson_access(student_id, course_id, lesson_ids[])`.
-- دوال ملخصات لوحة المستر (`master_dashboard_summary` وغيرها) أو views بدل تحميل الجداول كلها.
-- `delete_all_*`: دوال للمستر فقط.
+- `get_exam_questions(exam_id)`: returns the questions **without correct answers**, on condition: the student is subscribed, the exam is published and within its time, and they have not submitted before.
+- `submit_exam(exam_id, answers)`: grades the auto-graded questions on the server, and records the attempt (once only), and its status is `needs_review` if there is an essay.
+- `grade_essays(attempt_id, scores)`: for the Master. Updates the scores per question, and recalculates the final score (auto + essay), and closes the status as `graded` when all essays are graded.
+- `get_lesson_media(lesson_id)`: returns the video and the handout if the student is subscribed or has a permission for the lesson.
+- `create_subscription_request(...)` and `create_book_request(...)`: **the amount is calculated on the server** (from `course_plans` or `books.price`), not from the browser.
+- `approve_subscription_request(id)`: (for the Master) creates the subscription from today's date (monthly +1 month, term +4 months according to the current constant), and updates the request in a single operation. And `reject_...`.
+- `approve_book_request(id)`: records the ownership and updates the request. And `reject_...`.
+- `extend_enrollment(id, days)` and `end_enrollment(id)` and `grant_lesson_access(student_id, course_id, lesson_ids[])`.
+- Master dashboard summary functions (`master_dashboard_summary` and others) or views instead of loading all the tables.
+- `delete_all_*`: functions for the Master only.
 
 **Edge Functions:**
-- `resolve-login`: لو الطالب كتب رقم تليفون، نجيب إيميله ونسجّل به.
-- `delete-student`: بصلاحية service role لمسح حساب Auth.
-- `cloudinary-sign`: (للمستر) توقيع رفع الصور.
-- `cloudinary-delete`: (للمستر) مسح صورة قديمة.
-- `storage-usage`: (للمستر) أرقام المساحة (قسم 9).
+- `resolve-login`: if the student typed a phone number, we get their email and log in with it.
+- `delete-student`: with service role permission to delete the Auth account.
+- `cloudinary-sign`: (for the Master) signing image uploads.
+- `cloudinary-delete`: (for the Master) deleting an old image.
+- `storage-usage`: (for the Master) the storage numbers (Section 9).
 
-### 16.7 الصور: ضغط + رفع
+### 16.7 Images: compression + upload
 
-1. المستر يختار صورة ← فحص النوع والحجم الأقصى.
-2. **ضغط في المتصفح قبل الرفع** بمكتبة `browser-image-compression`: أقصى بُعد 1600px، صيغة WebP، الهدف ≤ 300KB تقريبًا، ومعالجة في Web Worker.
-3. معاينة فورية.
-4. وقت «حفظ»: طلب توقيع من `cloudinary-sign` ← رفع لـ Cloudinary في فولدر `alghazi/courses` أو `alghazi/books`.
-5. الجدول بيحفظ `image_url` (الـ secure_url) + `image_public_id`.
-6. لو الصورة اتغيرت أو الكورس/الكتاب اتحذف ← `cloudinary-delete` بالـ `public_id`، عشان الصور القديمة ما تاكلش المساحة.
-7. وقت العرض: روابط بتحويلات `f_auto,q_auto` وعرض مناسب للكارت.
+1. The Master picks an image ← check the type and the maximum size.
+2. **Compression in the browser before uploading** with the `browser-image-compression` library: maximum dimension 1600px, WebP format, target ≤ about 300KB, and processing in a Web Worker.
+3. Instant preview.
+4. At "Save" time: request a signature from `cloudinary-sign` ← upload to Cloudinary in the folder `alghazi/courses` or `alghazi/books`.
+5. The table saves `image_url` (the secure_url) + `image_public_id`.
+6. If the image is changed or the course/book is deleted ← `cloudinary-delete` with the `public_id`, so that old images do not eat up the storage.
+7. At display time: links with `f_auto,q_auto` transformations and a width suitable for the card.
 
-**ليه رفع موقّع بدل unsigned preset؟** الـ unsigned preset اسمه بيبقى ظاهر في الـ frontend، وأي حد يقدر يرفع على حسابك ويخلص المساحة المجانية. والمستر هو الوحيد اللي بيرفع، فالتوقيع من دالة للمستر أنسب.
+**Why a signed upload instead of an unsigned preset?** The unsigned preset's name is visible in the frontend, and anyone can upload to your account and use up the free storage. And the Master is the only one who uploads, so signing from a function for the Master is more suitable.
 
-مفاتيح الـ frontend العامة بس: `VITE_SUPABASE_URL` و`VITE_SUPABASE_ANON_KEY` و`VITE_CLOUDINARY_CLOUD_NAME`. الـ API secret وservice role **يتخزنوا في أسرار Edge Functions** ومش في الكود أبدًا.
+Public frontend keys only: `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY` and `VITE_CLOUDINARY_CLOUD_NAME`. The API secret and the service role **are stored in the Edge Functions secrets** and never in the code.
 
-### 16.8 الفيديو والملزمة (الحماية بصراحة)
+### 16.8 Video and handout (protection, honestly)
 
-- جدول `lesson_media` ما حدش يقراه إلا المستر، والطالب بياخد الروابط من `get_lesson_media` **بعد فحص اشتراكه**. فالزائر وغير المشترك عمره ما بيستلم الرابط في أي Network request.
-- **حد الحماية:** الطالب المشترك يقدر يشوف الـ Video ID في الـ Network ويشاركه. YouTube Unlisted ورابط Drive «أي شخص لديه الرابط» مفيهم منع تقني لده. الحماية الفعلية هي منع غير المشترك.
+- Nobody can read the `lesson_media` table except the Master, and the student gets the links from `get_lesson_media` **after their subscription is checked**. So the visitor and the non-subscribed student never receive the link in any Network request.
+- **The limit of the protection:** the subscribed student can see the Video ID in the Network tab and share it. YouTube Unlisted and a Drive link set to "anyone with the link" have no technical prevention of that. The actual protection is blocking the non-subscribed.
 
-### 16.9 عداد المساحة (الإعدادات)
+### 16.9 The storage meter (Settings)
 
-الأرقام الحقيقية لازم تيجي من Edge Function اسمها `storage-usage` (للمستر فقط)، وتتخزن مؤقتًا حوالي ساعة. الصفحة بتعرض: المستخدم + الحد + المتبقي + نسبة، وشريط يتلون (أخضر ← دهبي عند 80% ← أحمر عند 90%).
+The real numbers must come from an Edge Function named `storage-usage` (for the Master only), and are cached for about an hour. The page shows: used + limit + remaining + percentage, and a bar that changes color (green ← gold at 80% ← red at 90%).
 
-- **Supabase:** حجم قاعدة البيانات بـ SQL (`pg_database_size`) عن طريق دالة.
-- **Cloudinary:** Admin API للاستهلاك (يحتاج الـ secret، فالدالة بس).
-- **Google Drive:** Drive API `about.get` بحقل `storageQuota` (فيه `limit` و`usage` و`usageInDrive`). **لازم OAuth** باسم حساب Google اللي عليه الملازم، بصلاحية قراءة بيانات وصفية فقط (`drive.metadata.readonly` هو الأقل صلاحية، وراجع الـ scope الحالي في توثيق Google). الخطوة الوحيدة اللي بتحتاج إنسان: الموافقة مرة واحدة في المتصفح، واللي بتطلّع `refresh token` بيتحط في أسرار الدالة. تنبيهات:
-  - مساحة حساب Google المجاني (15GB مثلًا) **مشتركة** بين Drive وGmail وPhotos. `usage` بيحسب الكل، و`usageInDrive` بيحسب Drive فقط. اعرض الاتنين أو الأنسب لك.
-  - لو الحساب مساحته غير محدودة (بعض حسابات Workspace) بيتأخر أو يغيب حقل `limit`، فالواجهة لازم تتعامل مع غيابه.
-  - لو التطبيق في وضع Testing على شاشة موافقة Google، الـ refresh token ممكن ينتهي بعد 7 أيام تقريبًا. الحل: نقل التطبيق لـ In production (تظهر تحذير «تطبيق غير موثّق» للمالك فقط وده عادي)، وراجع الشروط الحالية.
-  - Service Account **ما ينفعش** هنا: بيرجّع مساحته هو، مش مساحة حسابك.
-- **YouTube:** مفيش حد مساحة نعرضه.
+- **Supabase:** the database size via SQL (`pg_database_size`) through a function.
+- **Cloudinary:** the Admin API for usage (needs the secret, so only the function).
+- **Google Drive:** the Drive API `about.get` with the `storageQuota` field (it has `limit` and `usage` and `usageInDrive`). **OAuth is required** under the name of the Google account that holds the handouts, with a metadata read-only permission (`drive.metadata.readonly` is the least privileged, and check the current scope in Google's documentation). The only step that needs a human: a one-time approval in the browser, which produces a `refresh token` that is put into the function's secrets. Warnings:
+  - The storage of a free Google account (15GB for example) is **shared** between Drive, Gmail, and Photos. `usage` counts everything, and `usageInDrive` counts Drive only. Show both or whichever suits you.
+  - If the account's storage is unlimited (some Workspace accounts), the `limit` field is delayed or missing, so the interface must handle its absence.
+  - If the app is in Testing mode on the Google consent screen, the refresh token may expire after about 7 days. The fix: move the app to In production (an "unverified app" warning appears for the owner only and that is normal), and check the current conditions.
+  - A Service Account **will not work** here: it returns its own storage, not your account's storage.
+- **YouTube:** there is no storage limit to show.
 
-الحدود (500MB وغيرها) بتتغير وبتتراجع من صفحات الأسعار الرسمية وتتحط في ثابت واحد. و`masterStorageService` فيه الشكل النهائي جاهز، وبتتبدل جواه فقط.
+The limits (500MB and others) change and are reviewed from the official pricing pages and placed in a single constant. And `masterStorageService` already has the final shape ready, and only what is inside it is replaced.
 
 ---
 
-### 16.10 خريطة الربط بالكود
+### 16.10 Mapping to the code
 
-**الصفحات والتصميم: صفر تعديل.** اللي بيتغير:
+**Pages and design: zero changes.** What changes:
 
-| الجزء | الشغل |
+| Part | The work |
 |---|---|
-| 16 service أساسية (`courseService`...) (ما عدا `chatService`: خارج النطاق) | تتحول من الداتا المحلية لـ Supabase. **نفس أسماء الدوال والمدخلات والمخرجات.** |
-| 12 service للمستر | فلترة وتقسيم وإحصائيات بـ queries و`range` و`count` ودوال RPC. المدخلات والمخرجات ثابتة. |
-| `studentService.getCurrentStudent` | تقرأ من جلسة Auth |
-| `subscriptionService` و`bookPurchaseService` | إنشاء الطلب عبر RPC (المبلغ من السيرفر)، وشيل فرع `accessType = "lesson"` |
-| `ExamInterface` و`ExamResult` و`questionService` | الأسئلة من `get_exam_questions`، والتسليم من `submit_exam`، والنتيجة من الـ attempt، وشيل `sessionStorage` |
-| `Login` و`Signup` | يتوصلوا بـ `authService` |
-| `utils/readImageFile.js` + `MasterImageField` | ضغط + رفع Cloudinary |
-| `masterStorageService` | استدعاء `storage-usage` |
+| 16 core services (`courseService`...) (except `chatService`: out of scope) | Converted from the local data to Supabase. **The same function names, inputs, and outputs.** |
+| 12 Master services | Filtering, pagination, and statistics via queries and `range` and `count` and RPC functions. Inputs and outputs are fixed. |
+| `studentService.getCurrentStudent` | Reads from the Auth session |
+| `subscriptionService` and `bookPurchaseService` | Creating the request via RPC (the amount from the server), and remove the `accessType = "lesson"` branch |
+| `ExamInterface` and `ExamResult` and `questionService` | The questions from `get_exam_questions`, the submission from `submit_exam`, the result from the attempt, and remove `sessionStorage` |
+| `Login` and `Signup` | Connected to `authService` |
+| `utils/readImageFile.js` + `MasterImageField` | Compression + Cloudinary upload |
+| `masterStorageService` | Calling `storage-usage` |
 
-**ملفات جديدة:** `lib/supabaseClient.js`، `mappers/` (تحويل snake_case لـ camelCase بنفس الأسماء الحالية)، `services/authService.jsx`، `context/AuthContext.jsx`، حماية للمسارات (`ProtectedRoute` و`AdminRoute`)، `services/mediaService.jsx`.
+**New files:** `lib/supabaseClient.js`, `mappers/` (converting snake_case to camelCase with the same current names), `services/authService.jsx`, `context/AuthContext.jsx`, route protection (`ProtectedRoute` and `AdminRoute`), `services/mediaService.jsx`.
 
-### 16.11 ترتيب التنفيذ (الموقع يفضل شغال في كل خطوة)
+### 16.11 Execution order (the site stays working at every step)
 
-1. **الأساس:** مشروع Supabase، الجداول، RLS، الدوال، بيانات أولية (الصفوف، وسيلة الدفع، الإعدادات).
-2. **القراءة العامة:** الصفوف والكورسات والخطط والدروس والكتب ووسائل الدفع.
-3. **الحسابات:** التسجيل (trigger ينشئ الـ profile)، الدخول (+ بالتليفون)، `getCurrentStudent`، حماية المسارات.
-4. **رحلة الطالب:** الاشتراكات، الدروس (الميديا بالدالة)، الامتحانات (جلب + تسليم)، النتائج، طلبات الاشتراك والكتب، ملكية الكتب.
-5. **لوحة المستر:** الخدمات واحدة واحدة (الطلاب، الكورسات، الامتحانات، النتائج، الاشتراكات، الكتب، الصلاحيات، الإعدادات)، مع دوال القبول والتصحيح.
-6. **الصور:** ضغط ورفع Cloudinary وحذف القديم.
-7. **المساحة والتصليب:** `storage-usage`، اختبار RLS لكل دور، مراجعة الأسرار.
+1. **The foundation:** the Supabase project, the tables, RLS, the functions, initial data (the grades, the payment method, the settings).
+2. **Public reading:** the grades, courses, plans, lessons, books, and payment methods.
+3. **Accounts:** sign-up (a trigger creates the profile), login (+ by phone), `getCurrentStudent`, route protection.
+4. **The student journey:** subscriptions, lessons (the media via the function), exams (fetch + submit), results, subscription and book requests, book ownership.
+5. **The Master dashboard:** the services one by one (students, courses, exams, results, subscriptions, books, permissions, settings), with the accept and grading functions.
+6. **Images:** compression and Cloudinary upload and deleting the old one.
+7. **Storage and hardening:** `storage-usage`, RLS testing for each role, reviewing the secrets.
 
-### 16.12 أسئلة مفتوحة (ومعاها الافتراض)
+### 16.12 Open questions (with the assumption)
 
-1. **الشات:** خارج نطاق Supabase (Firebase لاحقًا). لا يتلمس في هذه الخطة.
-2. **الدخول بالتليفون:** Supabase بيسجّل بالإيميل والباسورد بسهولة. الافتراض: نسجّل بالإيميل، ولو كتب تليفون نحوّله لإيميله بـ `resolve-login`.
-3. **تأكيد الإيميل:** الافتراض: مش مطلوب في البداية.
-4. **حساب المستر:** بيتعمل مرة واحدة يدويًا، ويتحط له `role = 'admin'` بـ SQL.
-5. **البيانات الأولية (seed):** الصفوف الستة ووسيلة الدفع والإعدادات (إجباري). والمحتوى التجريبي (كورسات، وحدات، دروس، امتحانات، أسئلة، كتب) في ملف منفصل اختياري. **بدون طلاب وهميين** لأن أي طالب لازم له حساب دخول حقيقي.
+1. **The chat:** outside the Supabase scope (Firebase later). It is not touched in this plan.
+2. **Login by phone:** Supabase easily logs in with email and password. The assumption: we log in by email, and if they typed a phone we convert it to their email with `resolve-login`.
+3. **Email confirmation:** the assumption: not required at the start.
+4. **The Master's account:** it is created once manually, and given `role = 'admin'` via SQL.
+5. **Initial data (seed):** the six grades, the payment method, and the settings (mandatory). And the sample content (courses, units, lessons, exams, questions, books) in a separate optional file. **No fake students** because every student must have a real login account.
 
-### 16.13 المفاتيح والأسرار (أسماء ثابتة)
+### 16.13 Keys and secrets (fixed names)
 
-| النوع | الأسماء | تتحط فين |
+| Type | Names | Where they go |
 |---|---|---|
-| عام (يظهر في المتصفح) | `VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY`, `VITE_CLOUDINARY_CLOUD_NAME` | `.env.local` |
-| أدوات محلية (جهاز المطوّر) | `SUPABASE_ACCESS_TOKEN`, `SUPABASE_PROJECT_REF`, `SUPABASE_DB_PASSWORD` | `.env.admin` (غير مرفوع على Git) |
-| أسرار Edge Functions | `CLOUDINARY_CLOUD_NAME`, `CLOUDINARY_API_KEY`, `CLOUDINARY_API_SECRET`, `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`, `GOOGLE_REFRESH_TOKEN` | ملف `.env.secrets` (غير مرفوع على Git) ثم `supabase secrets set --env-file .env.secrets` |
+| Public (appears in the browser) | `VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY`, `VITE_CLOUDINARY_CLOUD_NAME` | `.env.local` |
+| Local tools (the developer's machine) | `SUPABASE_ACCESS_TOKEN`, `SUPABASE_PROJECT_REF`, `SUPABASE_DB_PASSWORD` | `.env.admin` (not pushed to Git) |
+| Edge Functions secrets | `CLOUDINARY_CLOUD_NAME`, `CLOUDINARY_API_KEY`, `CLOUDINARY_API_SECRET`, `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`, `GOOGLE_REFRESH_TOKEN` | The `.env.secrets` file (not pushed to Git) and then `supabase secrets set --env-file .env.secrets` |
 
-- مفتاح `service_role` ما يتحطش في أي كود أو سكريبت: Edge Functions بتاخده تلقائيًا من Supabase.
-- أسرار الدوال **ما يتحطش فيها أي اسم بيبدأ بـ `SUPABASE_`** (Supabase بيرفضه)، عشان كده `SUPABASE_*` في `.env.admin` لوحده و`CLOUDINARY_*`/`GOOGLE_*` في `.env.secrets`.
-- `.env` و`.env.admin` و`.env.secrets` في `.gitignore`، ويتعمل `.env.example` بالأسماء فقط.
-- فحص الملفات محليًا من غير ما تتبعت لحد: `node check-env.mjs` (السكريبت في جذر المشروع، ما بيطبعش أي قيمة كاملة).
-- بعد انتهاء الشغل: تغيير توكن Supabase وباسورد قاعدة البيانات وأسرار Cloudinary وGoogle.
-- **خطوات ما ينفعش الـ AI يعملها (إنسان):** إنشاء الحسابات والمشاريع، توليد المفاتيح، موافقة Google في المتصفح، إعدادات Auth على Supabase (Site URL وتعطيل تأكيد الإيميل)، تسجيل حساب المستر ثم تعيين `role='admin'` بـ SQL، رفع الملازم والفيديوهات، التجربة الفعلية على الموبايل، تدوير المفاتيح.
+- The `service_role` key must not be put in any code or script: Edge Functions get it automatically from Supabase.
+- The functions' secrets **must not contain any name that starts with `SUPABASE_`** (Supabase rejects it), which is why `SUPABASE_*` is in `.env.admin` alone and `CLOUDINARY_*`/`GOOGLE_*` are in `.env.secrets`.
+- `.env`, `.env.admin`, and `.env.secrets` are in `.gitignore`, and a `.env.example` is created with names only.
+- Checking the files locally without sending them to anyone: `node check-env.mjs` (the script is in the project root, and it does not print any full value).
+- After the work is finished: change the Supabase token, the database password, and the Cloudinary and Google secrets.
+- **Steps the AI cannot do (a human):** creating the accounts and projects, generating the keys, the Google approval in the browser, the Auth settings on Supabase (Site URL and disabling email confirmation), registering the Master's account and then setting `role='admin'` via SQL, uploading the handouts and videos, the real testing on mobile, rotating the keys.
 
 ---
 
-*نهاية الملف.*
+*End of file.*
