@@ -15,7 +15,6 @@ import { getBooks } from "../../services/bookService";
 import BookCard from "./BookCard";
 
 export default function BooksSection() {
-  
   const [books, setBooks] = useState(null);
   const swiperRef = useRef(null);
 
@@ -114,23 +113,27 @@ export default function BooksSection() {
               ))}
             </Swiper>
 
-            <button
-              type="button"
-              aria-label="الكتب السابقة"
-              onClick={() => swiperRef.current?.slidePrev()}
-              className="cursor-pointer absolute -right-1.5 top-1/2 z-20 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-gold/20 bg-[#0c1a2b]/90 text-gold shadow-[0_10px_30px_rgba(0,0,0,0.30)] backdrop-blur-md transition-all duration-300 hover:border-gold hover:bg-gold hover:text-midnight lg:flex"
-            >
-              <FontAwesomeIcon icon={faArrowRight} />
-            </button>
+            {books.length > 3 && (
+              <>
+                <button
+                  type="button"
+                  aria-label="الكتب السابقة"
+                  onClick={() => swiperRef.current?.slidePrev()}
+                  className="cursor-pointer absolute -right-1.5 top-1/2 z-20 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-gold/20 bg-[#0c1a2b]/90 text-gold shadow-[0_10px_30px_rgba(0,0,0,0.30)] backdrop-blur-md transition-all duration-300 hover:border-gold hover:bg-gold hover:text-midnight lg:flex"
+                >
+                  <FontAwesomeIcon icon={faArrowRight} />
+                </button>
 
-            <button
-              type="button"
-              aria-label="الكتب التالية"
-              onClick={() => swiperRef.current?.slideNext()}
-              className="cursor-pointer absolute -left-1.5 top-1/2 z-20 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-gold/20 bg-[#0c1a2b]/90 text-gold shadow-[0_10px_30px_rgba(0,0,0,0.30)] backdrop-blur-md transition-all duration-300 hover:border-gold hover:bg-gold hover:text-midnight lg:flex"
-            >
-              <FontAwesomeIcon icon={faArrowLeft} />
-            </button>
+                <button
+                  type="button"
+                  aria-label="الكتب التالية"
+                  onClick={() => swiperRef.current?.slideNext()}
+                  className="cursor-pointer absolute -left-1.5 top-1/2 z-20 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-gold/20 bg-[#0c1a2b]/90 text-gold shadow-[0_10px_30px_rgba(0,0,0,0.30)] backdrop-blur-md transition-all duration-300 hover:border-gold hover:bg-gold hover:text-midnight lg:flex"
+                >
+                  <FontAwesomeIcon icon={faArrowLeft} />
+                </button>
+              </>
+            )}
           </div>
         ) : (
           <div className="mx-auto max-w-xl rounded-2xl border border-white/10 bg-[#0c1a2b] p-8 text-center">
@@ -144,8 +147,7 @@ export default function BooksSection() {
           </div>
         )}
 
-        {books.length > 0 &&
-        (
+        {books.length > 0 && (
           <div className="mt-12 flex justify-center">
             <Link
               to="/books"
