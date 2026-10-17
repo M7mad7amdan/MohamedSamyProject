@@ -6,11 +6,12 @@ import Navbar from "../Components/Navbar";
 import HeroSection from "../Components/HeroSection";
 import AboutPlatform from "../Components/AboutPlatform";
 import Courses from "../Components/Courses";
+import BooksSection from "../Components/Books/BooksSection";
 import StudentOpinions from "../Components/StudentOpinions";
 import Footer from "../Components/Footer";
-import BooksSection from "../Components/Books/BooksSection";
 
 export default function Home() {
+
   useEffect(() => {
    
 
