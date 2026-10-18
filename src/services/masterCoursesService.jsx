@@ -412,6 +412,7 @@ async function deleteCourseRecords(courseId) {
 
 // ملاحظة Supabase: الحذف المتسلسل ده هيبقى CASCADE أو RPC واحدة على السيرفر.
 // الصفحات بتنادي الدالتين دول بس، فبنبدّل جواهم من غير ما نغيّر الصفحات.
+
 export async function deleteMasterCourse(courseId) {
   const course = await getAnyCourseById(courseId);
 

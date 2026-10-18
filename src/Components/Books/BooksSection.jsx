@@ -91,11 +91,11 @@ export default function BooksSection() {
               slidesPerView={1}
               spaceBetween={16}
               breakpoints={{
-                650: {
+                580: {
                   slidesPerView: 1,
                   spaceBetween: 20,
                 },
-                900: {
+                680: {
                   slidesPerView: 2,
                   spaceBetween: 24,
                 },
@@ -107,7 +107,7 @@ export default function BooksSection() {
               className="books-swiper"
             >
               {books.map((book) => (
-                <SwiperSlide key={book.id} className="h-auto">
+                <SwiperSlide key={book.id} className="h-full">
                   <BookCard book={book} />
                 </SwiperSlide>
               ))}
