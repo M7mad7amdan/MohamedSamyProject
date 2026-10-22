@@ -159,10 +159,13 @@ export default function Login() {
                 <div className="absolute inset-2 rounded-full border border-gold/10" />
 
                 <img
-                  src={Master}
-                  alt="الغازي في التاريخ"
-                  className="h-20 w-20 object-contain"
-                />
+  src={Master}
+  alt="الغازي في التاريخ"
+  className="h-20 w-20 object-contain"
+  loading="eager"
+  fetchPriority="high"
+  decoding="async"
+/>
               </div>
 
               <div className="mb-3 flex items-center justify-center gap-3">
